@@ -42,7 +42,7 @@ export function ContactForm() {
         Project Type
         <select className={inputClass} name="projectType" defaultValue="Data Engineering">
           <option>Data Engineering</option>
-          <option>Azure / Fabric / Lakehouse</option>
+          <option>Azure / Fabric / AWS / Lakehouse</option>
           <option>OpenAI / LLM Automation</option>
           <option>Data Science / Machine Learning</option>
           <option>Prompt Engineering</option>

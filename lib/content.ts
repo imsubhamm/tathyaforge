@@ -18,7 +18,7 @@ export const navItems = [
 export const serviceChips = [
   "Data Engineering",
   "AI Automation",
-  "Azure/Fabric",
+  "Azure/Fabric/AWS",
   "Dashboards",
   "Custom ERP/SaaS",
 ];
@@ -32,7 +32,7 @@ export const services = [
   {
     title: "Cloud Data Platforms",
     summary:
-      "Plan and build Azure, Fabric, Databricks, and warehouse environments that support scale without creating platform sprawl.",
+      "Plan and build Azure, Fabric, AWS, Databricks, and warehouse environments that support scale without creating platform sprawl.",
   },
   {
     title: "AI, LLM & Prompt Engineering",
@@ -55,7 +55,7 @@ export const whoWeHelp = [
   "Businesses stuck with manual Excel workflows",
   "Founders building SaaS or internal tools",
   "Teams needing dashboards and reporting automation",
-  "Companies moving data to Azure, Fabric, or Databricks",
+  "Companies moving data to Azure, Fabric, AWS, or Databricks",
   "Construction and operations-heavy businesses needing ERP/workflow systems",
 ];
 
@@ -169,7 +169,7 @@ export const solutionBlueprints = [
       "A structured operating system for project tracking, approvals, vendors, documents, and site-to-office visibility. Designed for businesses moving beyond spreadsheets and chat-based coordination.",
   },
   {
-    title: "Azure / Fabric Data Platform",
+    title: "Azure / Fabric / AWS Data Platform",
     summary:
       "A cloud data foundation that connects source systems, applies quality checks, and prepares trusted datasets for reporting, automation, and future AI use cases.",
   },
@@ -231,10 +231,10 @@ export const caseStudyCards = [
       "A role-based workflow platform for project tracking, approvals, vendor coordination, documents, and operational visibility across construction teams. This blueprint is for companies that need stronger process control without forcing the business into a rigid off-the-shelf ERP.",
   },
   {
-    title: "Azure, Fabric & Multi-Cloud Data Platform",
+    title: "Azure, Fabric, AWS & Multi-Cloud Data Platform",
     eyebrow: "Example Solution Area",
     summary:
-      "A modern data foundation across Azure, Microsoft Fabric, Databricks, warehouses, and multi-cloud services. The focus is trusted datasets, reliable refreshes, governed access, and cleaner reporting paths for business teams.",
+      "A modern data foundation across Azure, Microsoft Fabric, AWS, Databricks, warehouses, and multi-cloud services. The focus is trusted datasets, reliable refreshes, governed access, and cleaner reporting paths for business teams.",
   },
   {
     title: "AI-Powered Business Automation",
@@ -256,9 +256,9 @@ export const faqs = [
       "Yes. The work is shaped around practical scope, clear priorities, and systems that can grow without forcing a large enterprise-style engagement from day one.",
   },
   {
-    question: "Can you help with Azure, Fabric, or Databricks?",
+    question: "Can you help with Azure, Fabric, AWS, or Databricks?",
     answer:
-      "Yes. TathyaForge can help design, migrate, optimize, and govern data platforms across Azure, Microsoft Fabric, Databricks, and related cloud services.",
+      "Yes. TathyaForge can help design, migrate, optimize, and govern data platforms across Azure, Microsoft Fabric, AWS, Databricks, and related cloud services.",
   },
   {
     question: "Can you build custom ERP or internal tools?",
@@ -275,7 +275,7 @@ export const faqs = [
 export const footerServiceLinks = [
   { label: "Data Engineering", href: "/services" },
   { label: "AI Automation", href: "/services" },
-  { label: "Azure/Fabric Platforms", href: "/services" },
+  { label: "Azure/Fabric/AWS Platforms", href: "/services" },
   { label: "Dashboards", href: "/services" },
   { label: "Custom ERP/SaaS", href: "/services" },
 ];

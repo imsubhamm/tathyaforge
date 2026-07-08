@@ -57,7 +57,7 @@ export default function Home() {
               </p>
               <div className="mt-6 grid gap-4">
                 {[
-                  "Azure, Fabric, and cloud data foundations built for reliability.",
+                  "Azure, Fabric, AWS, and cloud data foundations built for reliability.",
                   "AI workflows designed around real business review points",
                   "Business workflows translated into maintainable software",
                   "Dashboards and reporting layers built for decisions",

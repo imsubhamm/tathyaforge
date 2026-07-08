@@ -7,7 +7,7 @@ import { detailedServices } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Data engineering, Azure, Microsoft Fabric, Databricks, OpenAI, data science, AI automation, dashboards, and custom ERP/SaaS development services from TathyaForge.",
+    "Data engineering, Azure, Microsoft Fabric, AWS, Databricks, OpenAI, data science, AI automation, dashboards, and custom ERP/SaaS development services from TathyaForge.",
   alternates: {
     canonical: "/services",
   },
@@ -20,7 +20,7 @@ export default function ServicesPage() {
         <SectionHeader
           eyebrow="Services"
           title="Engineering services for data-driven businesses."
-          description="From raw business facts to reliable Azure, Fabric, multi-cloud, OpenAI, data science, automation, dashboard, and custom software systems, TathyaForge helps teams turn operational complexity into production systems."
+          description="From raw business facts to reliable Azure, Fabric, AWS, multi-cloud, OpenAI, data science, automation, dashboard, and custom software systems, TathyaForge helps teams turn operational complexity into production systems."
         />
         <div className="mt-12 grid gap-6">
           {detailedServices.map((service) => (
