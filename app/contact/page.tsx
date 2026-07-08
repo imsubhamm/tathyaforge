@@ -7,7 +7,7 @@ import { company, projectInquiryHref } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact TathyaForge to discuss data engineering, Azure, Fabric, AWS, OpenAI, prompt engineering, data science, dashboards, cloud platforms, ERP, or SaaS development.",
+    "Contact TathyaForge to discuss data engineering, Azure, GCP, AWS, OpenAI, prompt engineering, data science, dashboards, cloud platforms, ERP, or SaaS development.",
   alternates: {
     canonical: "/contact",
   },

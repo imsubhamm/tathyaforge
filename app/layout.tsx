@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "OpenAI",
     "Prompt Engineering",
     "Data Science",
-    "Microsoft Fabric",
+    "GCP Consulting",
     "Azure Consulting",
     "Databricks Consulting",
     "Multi Cloud",

@@ -7,7 +7,7 @@ import { caseStudyCards } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Solution Blueprints",
   description:
-    "Explore TathyaForge solution blueprints for construction ERP workflows, Azure, Fabric, and AWS data platforms, data science, and AI-powered business automation.",
+    "Explore TathyaForge solution blueprints for construction ERP workflows, Azure, GCP, and AWS data platforms, data science, and AI-powered business automation.",
   alternates: {
     canonical: "/case-studies",
   },

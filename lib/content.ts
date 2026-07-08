@@ -18,7 +18,7 @@ export const navItems = [
 export const serviceChips = [
   "Data Engineering",
   "AI Automation",
-  "Azure/Fabric/AWS",
+  "Azure/GCP/AWS",
   "Dashboards",
   "Custom ERP/SaaS",
 ];
@@ -32,7 +32,7 @@ export const services = [
   {
     title: "Cloud Data Platforms",
     summary:
-      "Plan and build Azure, Fabric, AWS, Databricks, and warehouse environments that support scale without creating platform sprawl.",
+      "Plan and build Azure, GCP, AWS, Databricks, and warehouse environments that support scale without creating platform sprawl.",
   },
   {
     title: "AI, LLM & Prompt Engineering",
@@ -55,7 +55,7 @@ export const whoWeHelp = [
   "Businesses stuck with manual Excel workflows",
   "Founders building SaaS or internal tools",
   "Teams needing dashboards and reporting automation",
-  "Companies moving data to Azure, Fabric, AWS, or Databricks",
+  "Companies moving data to Azure, GCP, AWS, or Databricks",
   "Construction and operations-heavy businesses needing ERP/workflow systems",
 ];
 
@@ -81,18 +81,18 @@ export const detailedServices = [
   {
     title: "Cloud Data Platform & Lakehouse Consulting",
     builds: [
-      "Azure Data Lake, Microsoft Fabric, Databricks, and warehouse foundations",
+      "Azure Data Lake, GCP, AWS, Databricks, and warehouse foundations",
       "Delta Lake, medallion architecture, semantic models, and optimized jobs",
       "Multi-cloud governance, migration paths, cost controls, and performance tuning",
     ],
     problems: [
       "Expensive or slow analytics workloads",
-      "Fragmented Azure, AWS, Fabric, lake, and warehouse environments",
+      "Fragmented Azure, GCP, AWS, lake, and warehouse environments",
       "Unclear migration strategy for modern data platforms",
     ],
     deliverables: [
       "Cloud data platform architecture blueprint",
-      "Fabric, Databricks, warehouse, and lakehouse implementation plan",
+      "GCP, Databricks, warehouse, and lakehouse implementation plan",
       "Migration and governance roadmap",
     ],
   },
@@ -118,7 +118,7 @@ export const detailedServices = [
   {
     title: "Dashboard & Reporting",
     builds: [
-      "Power BI and Fabric dashboards for finance, operations, sales, and leadership",
+      "Power BI dashboards for finance, operations, sales, and leadership",
       "KPI models with clear metric definitions",
       "Executive reporting and data science insight layers connected to trusted data",
     ],
@@ -169,7 +169,7 @@ export const solutionBlueprints = [
       "A structured operating system for project tracking, approvals, vendors, documents, and site-to-office visibility. Designed for businesses moving beyond spreadsheets and chat-based coordination.",
   },
   {
-    title: "Azure / Fabric / AWS Data Platform",
+    title: "Azure / GCP / AWS Data Platform",
     summary:
       "A cloud data foundation that connects source systems, applies quality checks, and prepares trusted datasets for reporting, automation, and future AI use cases.",
   },
@@ -192,7 +192,7 @@ export const solutionBlueprints = [
 
 export const techStack = [
   "Azure",
-  "Microsoft Fabric",
+  "GCP",
   "AWS",
   "GCP",
   "Databricks",
@@ -231,10 +231,10 @@ export const caseStudyCards = [
       "A role-based workflow platform for project tracking, approvals, vendor coordination, documents, and operational visibility across construction teams. This blueprint is for companies that need stronger process control without forcing the business into a rigid off-the-shelf ERP.",
   },
   {
-    title: "Azure, Fabric, AWS & Multi-Cloud Data Platform",
+    title: "Azure, GCP, AWS & Multi-Cloud Data Platform",
     eyebrow: "Example Solution Area",
     summary:
-      "A modern data foundation across Azure, Microsoft Fabric, AWS, Databricks, warehouses, and multi-cloud services. The focus is trusted datasets, reliable refreshes, governed access, and cleaner reporting paths for business teams.",
+      "A modern data foundation across Azure, GCP, AWS, Databricks, warehouses, and multi-cloud services. The focus is trusted datasets, reliable refreshes, governed access, and cleaner reporting paths for business teams.",
   },
   {
     title: "AI-Powered Business Automation",
@@ -256,9 +256,9 @@ export const faqs = [
       "Yes. The work is shaped around practical scope, clear priorities, and systems that can grow without forcing a large enterprise-style engagement from day one.",
   },
   {
-    question: "Can you help with Azure, Fabric, AWS, or Databricks?",
+    question: "Can you help with Azure, GCP, AWS, or Databricks?",
     answer:
-      "Yes. TathyaForge can help design, migrate, optimize, and govern data platforms across Azure, Microsoft Fabric, AWS, Databricks, and related cloud services.",
+      "Yes. TathyaForge can help design, migrate, optimize, and govern data platforms across Azure, GCP, AWS, Databricks, and related cloud services.",
   },
   {
     question: "Can you build custom ERP or internal tools?",
@@ -275,7 +275,7 @@ export const faqs = [
 export const footerServiceLinks = [
   { label: "Data Engineering", href: "/services" },
   { label: "AI Automation", href: "/services" },
-  { label: "Azure/Fabric/AWS Platforms", href: "/services" },
+  { label: "Azure/GCP/AWS Platforms", href: "/services" },
   { label: "Dashboards", href: "/services" },
   { label: "Custom ERP/SaaS", href: "/services" },
 ];
