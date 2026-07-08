@@ -7,6 +7,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { TechStack } from "@/components/TechStack";
 import {
   faqs,
+  howWeWork,
   processSteps,
   projectInquiryHref,
   serviceChips,
@@ -18,28 +19,28 @@ import {
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+      <section className="hero-texture relative overflow-hidden py-16 sm:py-20 lg:py-20">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="relative z-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">
                 TathyaForge
               </p>
-              <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Data & AI systems engineered from facts.
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                We design and build reliable data platforms, AI automation workflows,
-                data science solutions, dashboards, and custom business software for
-                teams that need clarity, speed, and scale.
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+                We build reliable data platforms, AI automation workflows,
+                dashboards, and custom software that help teams move from scattered
+                processes to scalable systems.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={projectInquiryHref}>Start Your Project</ButtonLink>
                 <ButtonLink href="/services" variant="secondary">
                   Explore Services
                 </ButtonLink>
               </div>
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap gap-3">
                 {serviceChips.map((chip) => (
                   <span
                     key={chip}
@@ -50,15 +51,15 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="surface rounded-lg p-6 sm:p-8">
-              <div className="accent-line mb-8 h-px w-full" />
+            <div className="surface rounded-lg p-5 sm:p-7">
+              <div className="accent-line mb-6 h-px w-full" />
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
                 Engineering focus
               </p>
               <div className="mt-6 grid gap-4">
                 {[
                   "Azure, GCP, AWS, and cloud data foundations built for reliability.",
-                  "AI workflows designed around real business review points",
+                  "AI workflows with human review, approval, and control built in",
                   "Business workflows translated into maintainable software",
                   "Dashboards and reporting layers built for decisions",
                 ].map((item) => (
@@ -82,6 +83,24 @@ export default function Home() {
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <ServiceCard key={service.title} {...service} />
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-16 sm:py-20">
+        <Container>
+          <SectionHeader
+            eyebrow="How we work"
+            title="A calm delivery rhythm from first architecture decision to handover."
+            description="The work stays structured and visible, so you understand what is being built, why it matters, and what is coming next."
+          />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {howWeWork.map((item) => (
+              <article key={item} className="surface rounded-lg p-5">
+                <div className="mb-4 h-1 w-10 rounded-full bg-amber-300" />
+                <h3 className="text-base font-semibold leading-6 text-white">{item}</h3>
+              </article>
             ))}
           </div>
         </Container>

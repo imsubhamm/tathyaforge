@@ -33,6 +33,34 @@ body {
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
 }
 
+.hero-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 18% 12%, rgba(245, 158, 11, 0.14), transparent 24rem),
+    radial-gradient(circle at 78% 24%, rgba(59, 130, 246, 0.08), transparent 26rem);
+  background-size: 44px 44px, 44px 44px, auto, auto;
+  mask-image: linear-gradient(to bottom, black 0%, black 76%, transparent 100%);
+}
+
+.hero-texture::after {
+  content: "";
+  position: absolute;
+  inset: 14% 6% auto auto;
+  width: min(34rem, 52vw);
+  height: 18rem;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 12%, rgba(245, 158, 11, 0.2) 12% 13%, transparent 13% 100%),
+    linear-gradient(180deg, transparent 0 36%, rgba(148, 163, 184, 0.16) 36% 37%, transparent 37% 100%);
+  opacity: 0.35;
+  clip-path: polygon(0 28%, 42% 28%, 42% 8%, 74% 8%, 74% 64%, 100% 64%, 100% 74%, 62% 74%, 62% 46%, 0 46%);
+}
+
 .accent-line {
   background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.75), transparent);
 }

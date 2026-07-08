@@ -59,6 +59,14 @@ export const whoWeHelp = [
   "Construction and operations-heavy businesses needing ERP/workflow systems",
 ];
 
+export const howWeWork = [
+  "Architecture-first planning",
+  "Clear project roadmap",
+  "Weekly delivery updates",
+  "Documentation and handover",
+  "Support after launch",
+];
+
 export const detailedServices = [
   {
     title: "Data Engineering & Pipelines",
@@ -192,19 +200,15 @@ export const solutionBlueprints = [
 
 export const techStack = [
   "Azure",
-  "GCP",
-  "AWS",
-  "GCP",
+  "Microsoft Fabric",
   "Databricks",
   "Delta Lake",
   "Azure Data Factory",
-  "Synapse",
+  "AWS",
+  "GCP",
   "OpenAI",
   "LLMs",
   "RAG",
-  "Prompt Engineering",
-  "Data Science",
-  "Machine Learning",
   "PySpark",
   "Python",
   "SQL",

@@ -6,7 +6,7 @@ import { navItems, projectInquiryHref } from "@/lib/content";
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
-      <nav className="mx-auto flex min-h-16 w-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex min-h-[68px] w-full max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-6 lg:px-8">
         <Logo />
         <div className="hidden items-center gap-7 md:flex">
           {navItems.map((item) => (

@@ -20,7 +20,7 @@ export function ButtonLink({
   return (
     <Link
       href={href}
-      className={`inline-flex min-h-11 items-center justify-center rounded-md px-5 py-3 text-sm font-semibold transition ${classes}`}
+      className={`inline-flex min-h-11 w-full items-center justify-center rounded-md px-5 py-3 text-sm font-semibold transition sm:w-auto ${classes}`}
     >
       {children}
     </Link>

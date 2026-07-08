@@ -4,12 +4,14 @@ type LogoProps = {
   variant?: "transparent" | "dark";
   showWordmark?: boolean;
   className?: string;
+  markClassName?: string;
 };
 
 export function Logo({
   variant = "transparent",
   showWordmark = true,
   className = "",
+  markClassName = "h-10 w-10",
 }: LogoProps) {
   const backgroundClass =
     variant === "dark"
@@ -20,11 +22,11 @@ export function Logo({
     <Link
       href="/"
       aria-label="TathyaForge home"
-      className={`inline-flex items-center gap-3 ${backgroundClass} ${className}`}
+      className={`inline-flex items-center gap-3.5 ${backgroundClass} ${className}`}
     >
-      <LogoMark className="h-9 w-9 shrink-0" />
+      <LogoMark className={`${markClassName} shrink-0`} />
       {showWordmark ? (
-        <span className="text-lg font-semibold tracking-tight text-slate-50">
+        <span className="text-xl font-semibold tracking-tight text-slate-50">
           TathyaForge
         </span>
       ) : null}
