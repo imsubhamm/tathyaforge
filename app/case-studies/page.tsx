@@ -25,7 +25,7 @@ export default function CaseStudiesPage() {
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {caseStudyCards.map((card) => (
             <article key={card.title} className="surface rounded-lg p-6 sm:p-7">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
                 {card.eyebrow}
               </p>
               <h2 className="mt-5 text-2xl font-semibold text-white">{card.title}</h2>

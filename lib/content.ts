@@ -5,6 +5,9 @@ export const company = {
   tagline: "Data & AI engineered from facts.",
 };
 
+export const projectInquiryHref =
+  "mailto:hello@tathyaforge.in?subject=Project%20Inquiry%20for%20TathyaForge";
+
 export const navItems = [
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
@@ -15,42 +18,45 @@ export const navItems = [
 export const serviceChips = [
   "Data Engineering",
   "AI Automation",
-  "Azure",
-  "Microsoft Fabric",
-  "Data Science",
-  "Prompt Engineering",
-  "OpenAI",
-  "Multi-cloud",
+  "Azure/Fabric",
   "Dashboards",
-  "ERP Systems",
+  "Custom ERP/SaaS",
 ];
 
 export const services = [
   {
     title: "Data Engineering",
     summary:
-      "ETL/ELT pipelines, data lakes, warehouses, quality checks, orchestration.",
+      "Turn scattered business data into reliable pipelines, clean models, and reporting-ready foundations your team can trust.",
   },
   {
     title: "Cloud Data Platforms",
     summary:
-      "Azure, Microsoft Fabric, Databricks, lakehouse architecture, governance, migration.",
+      "Plan and build Azure, Fabric, Databricks, and warehouse environments that support scale without creating platform sprawl.",
   },
   {
     title: "AI, LLM & Prompt Engineering",
     summary:
-      "OpenAI workflows, internal copilots, RAG, prompt engineering, document automation.",
+      "Convert repetitive document, support, and operations work into reviewed, practical automation using OpenAI and LLM workflows.",
   },
   {
     title: "Analytics & Data Science",
     summary:
-      "Power BI dashboards, KPI reporting, forecasting, experimentation, decision intelligence.",
+      "Create dashboards, forecasts, and decision layers that help leaders see what is happening and what needs attention next.",
   },
   {
     title: "Custom ERP & SaaS",
     summary:
-      "Business portals, approval workflows, role-based platforms, internal tools.",
+      "Build role-based portals, approval workflows, and internal systems around how your business actually operates.",
   },
+];
+
+export const whoWeHelp = [
+  "Businesses stuck with manual Excel workflows",
+  "Founders building SaaS or internal tools",
+  "Teams needing dashboards and reporting automation",
+  "Companies moving data to Azure, Fabric, or Databricks",
+  "Construction and operations-heavy businesses needing ERP/workflow systems",
 ];
 
 export const detailedServices = [
@@ -156,12 +162,32 @@ export const processSteps = [
   "Support",
 ];
 
-export const blueprints = [
-  "Construction ERP Workflow System",
-  "Azure / Fabric Data Platform",
-  "AI Document Automation",
-  "Data Science Insights Layer",
-  "SaaS MVP Build",
+export const solutionBlueprints = [
+  {
+    title: "Construction ERP Workflow System",
+    summary:
+      "A structured operating system for project tracking, approvals, vendors, documents, and site-to-office visibility. Designed for businesses moving beyond spreadsheets and chat-based coordination.",
+  },
+  {
+    title: "Azure / Fabric Data Platform",
+    summary:
+      "A cloud data foundation that connects source systems, applies quality checks, and prepares trusted datasets for reporting, automation, and future AI use cases.",
+  },
+  {
+    title: "AI Document Automation",
+    summary:
+      "A practical workflow for intake, extraction, classification, review, and routing of business documents. Built with controls so automation supports teams instead of replacing judgment.",
+  },
+  {
+    title: "Data Science Insights Layer",
+    summary:
+      "A decision layer for forecasting, segmentation, anomaly detection, and operational insights. Useful when dashboards need to move from visibility to sharper recommendations.",
+  },
+  {
+    title: "SaaS MVP Build",
+    summary:
+      "A focused product foundation for founders who need authentication, roles, dashboards, workflows, and deployment without overbuilding the first version.",
+  },
 ];
 
 export const techStack = [
@@ -202,18 +228,54 @@ export const caseStudyCards = [
     title: "Construction ERP Workflow System",
     eyebrow: "Solution Blueprint",
     summary:
-      "A role-based workflow platform for project tracking, approvals, vendor coordination, documents, and operational visibility across construction teams.",
+      "A role-based workflow platform for project tracking, approvals, vendor coordination, documents, and operational visibility across construction teams. This blueprint is for companies that need stronger process control without forcing the business into a rigid off-the-shelf ERP.",
   },
   {
     title: "Azure, Fabric & Multi-Cloud Data Platform",
     eyebrow: "Example Solution Area",
     summary:
-      "A modern data foundation across Azure, Microsoft Fabric, Databricks, warehouses, and multi-cloud services that prepares trusted data for dashboards, data science, and AI workflows.",
+      "A modern data foundation across Azure, Microsoft Fabric, Databricks, warehouses, and multi-cloud services. The focus is trusted datasets, reliable refreshes, governed access, and cleaner reporting paths for business teams.",
   },
   {
     title: "AI-Powered Business Automation",
     eyebrow: "Solution Blueprint",
     summary:
-      "A practical automation layer for document intake, classification, extraction, review queues, and downstream business actions.",
+      "A practical automation layer for document intake, classification, extraction, review queues, and downstream business actions. Built for controlled business use cases where accuracy, handoff, and review matter.",
   },
+];
+
+export const faqs = [
+  {
+    question: "What kind of projects does TathyaForge build?",
+    answer:
+      "TathyaForge builds data pipelines, cloud data platforms, AI automation workflows, dashboards, custom ERP systems, SaaS MVPs, and internal business tools.",
+  },
+  {
+    question: "Do you work with startups and small businesses?",
+    answer:
+      "Yes. The work is shaped around practical scope, clear priorities, and systems that can grow without forcing a large enterprise-style engagement from day one.",
+  },
+  {
+    question: "Can you help with Azure, Fabric, or Databricks?",
+    answer:
+      "Yes. TathyaForge can help design, migrate, optimize, and govern data platforms across Azure, Microsoft Fabric, Databricks, and related cloud services.",
+  },
+  {
+    question: "Can you build custom ERP or internal tools?",
+    answer:
+      "Yes. TathyaForge builds role-based portals, approval workflows, operational dashboards, admin panels, and custom ERP-style systems for business teams.",
+  },
+  {
+    question: "How do we start a project?",
+    answer:
+      "Start with a short discovery conversation. We clarify the workflow, data sources, users, risks, and delivery roadmap before recommending the right build path.",
+  },
+];
+
+export const footerServiceLinks = [
+  { label: "Data Engineering", href: "/services" },
+  { label: "AI Automation", href: "/services" },
+  { label: "Azure/Fabric Platforms", href: "/services" },
+  { label: "Dashboards", href: "/services" },
+  { label: "Custom ERP/SaaS", href: "/services" },
 ];

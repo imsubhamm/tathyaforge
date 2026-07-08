@@ -14,8 +14,8 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   const classes =
     variant === "primary"
-      ? "bg-teal-300 text-slate-950 hover:bg-teal-200"
-      : "border border-slate-700/80 bg-slate-950/35 text-slate-100 hover:border-teal-300/70 hover:text-white";
+      ? "bg-amber-300 text-slate-950 hover:bg-amber-200"
+      : "border border-slate-700/80 bg-slate-950/35 text-slate-100 hover:border-amber-300/70 hover:text-white";
 
   return (
     <Link

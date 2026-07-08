@@ -1,0 +1,44 @@
+import type { Metadata } from "next";
+import { Container } from "@/components/Container";
+import { SectionHeader } from "@/components/SectionHeader";
+import { company } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Privacy information for TathyaForge inquiries and website visitors.",
+  alternates: {
+    canonical: "/privacy",
+  },
+};
+
+export default function PrivacyPage() {
+  return (
+    <section className="py-20 sm:py-24">
+      <Container>
+        <SectionHeader
+          eyebrow="Privacy"
+          title="Privacy Policy"
+          description="TathyaForge only asks for the information needed to understand and respond to project inquiries."
+        />
+        <div className="surface mt-10 max-w-3xl rounded-lg p-6 text-sm leading-7 text-slate-300 sm:p-8">
+          <p>
+            If you contact TathyaForge, the details you provide may be used to
+            respond to your inquiry, discuss project requirements, and prepare a
+            relevant delivery plan.
+          </p>
+          <p className="mt-5">
+            TathyaForge does not sell personal information. Project information
+            shared during discovery is treated as confidential business context.
+          </p>
+          <p className="mt-5">
+            For privacy questions, email{" "}
+            <a className="text-amber-300 hover:text-amber-200" href={`mailto:${company.email}`}>
+              {company.email}
+            </a>
+            .
+          </p>
+        </div>
+      </Container>
+    </section>
+  );
+}

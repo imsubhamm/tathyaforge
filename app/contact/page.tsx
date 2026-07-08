@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { Container } from "@/components/Container";
 import { SectionHeader } from "@/components/SectionHeader";
-import { company } from "@/lib/content";
+import { company, projectInquiryHref } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -30,14 +30,14 @@ export default function ContactPage() {
               </p>
               <a
                 href={`mailto:${company.email}`}
-                className="mt-3 inline-block text-lg font-semibold text-white transition hover:text-teal-300"
+                className="mt-3 inline-block text-lg font-semibold text-white transition hover:text-amber-300"
               >
                 {company.email}
               </a>
               <div className="mt-6">
                 <a
-                  href={`mailto:${company.email}`}
-                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-teal-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-teal-200"
+                  href={projectInquiryHref}
+                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-200"
                 >
                   Email TathyaForge
                 </a>

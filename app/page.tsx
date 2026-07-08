@@ -6,10 +6,13 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ServiceCard } from "@/components/ServiceCard";
 import { TechStack } from "@/components/TechStack";
 import {
-  blueprints,
+  faqs,
   processSteps,
+  projectInquiryHref,
   serviceChips,
   services,
+  solutionBlueprints,
+  whoWeHelp,
 } from "@/lib/content";
 
 export default function Home() {
@@ -19,7 +22,7 @@ export default function Home() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-teal-300">
+              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">
                 TathyaForge
               </p>
               <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
@@ -31,7 +34,7 @@ export default function Home() {
                 teams that need clarity, speed, and scale.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/contact">Start a Project</ButtonLink>
+                <ButtonLink href={projectInquiryHref}>Start Your Project</ButtonLink>
                 <ButtonLink href="/services" variant="secondary">
                   Explore Services
                 </ButtonLink>
@@ -54,10 +57,10 @@ export default function Home() {
               </p>
               <div className="mt-6 grid gap-4">
                 {[
-                  "Trusted Azure, Fabric, and multi-cloud data foundations",
-                  "OpenAI, LLM, and prompt-engineered workflows for operations",
+                  "Azure, Fabric, and cloud data foundations built for reliability.",
+                  "AI workflows designed around real business review points",
                   "Business workflows translated into maintainable software",
-                  "Analytics, data science, and reporting layers built for decisions",
+                  "Dashboards and reporting layers built for decisions",
                 ].map((item) => (
                   <div key={item} className="rounded-md border border-slate-800 bg-slate-950/55 p-4">
                     <p className="text-base font-medium leading-7 text-slate-100">{item}</p>
@@ -74,7 +77,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Services"
             title="Production-ready systems for data, AI, analytics, and operations."
-            description="TathyaForge works where business workflows meet engineering depth: pipelines, Azure and Fabric platforms, lakehouses, data science workflows, dashboards, automations, and custom platforms."
+            description="TathyaForge helps teams replace fragile manual processes with reliable platforms, automations, dashboards, and internal software that can be supported after launch."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
@@ -88,9 +91,28 @@ export default function Home() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <SectionHeader
+              eyebrow="Who we help"
+              title="For teams that need clarity, not another generic software pitch."
+              description="The best projects start with a real operational bottleneck: manual reporting, disconnected data, slow approvals, or a product idea that needs a disciplined first build."
+            />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {whoWeHelp.map((item) => (
+                <article key={item} className="surface rounded-lg p-5">
+                  <p className="text-sm leading-6 text-slate-200">{item}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-16 sm:py-20">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <SectionHeader
               eyebrow="Why TathyaForge"
               title="Built with ownership from architecture to launch."
-              description="Clients get practical engineering, clean architecture, business-first delivery, ownership, and long-term maintainability."
+              description="You get a practical delivery partner who cares about the business workflow, the quality of the architecture, and whether the system will still make sense after the first launch."
             />
             <div className="grid gap-4 sm:grid-cols-2">
               {[
@@ -128,13 +150,14 @@ export default function Home() {
             eyebrow="Solution blueprints"
             title="Common systems TathyaForge can shape and build."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {blueprints.map((blueprint) => (
-              <article key={blueprint} className="surface rounded-lg p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {solutionBlueprints.map((blueprint) => (
+              <article key={blueprint.title} className="surface rounded-lg p-6">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
                   Blueprint
                 </p>
-                <h3 className="mt-5 text-xl font-semibold text-white">{blueprint}</h3>
+                <h3 className="mt-5 text-xl font-semibold text-white">{blueprint.title}</h3>
+                <p className="mt-4 text-sm leading-6 text-slate-300">{blueprint.summary}</p>
               </article>
             ))}
           </div>
@@ -146,8 +169,8 @@ export default function Home() {
           <div className="surface rounded-lg p-8 sm:p-10">
             <SectionHeader
               eyebrow="Founder-led"
-              title="Work directly with an experienced data engineering professional."
-              description="TathyaForge is designed for teams that want senior judgment close to the work. Clients work directly with a professional who understands enterprise delivery, Azure, Fabric, Databricks, OpenAI, multi-cloud platforms, data architecture, and business workflows."
+              title="Senior attention stays close to the work."
+              description="TathyaForge is intentionally founder-led. You work directly with someone who can understand the business problem, challenge the scope when needed, make practical architecture decisions, and keep delivery focused on the system your team actually needs."
             />
           </div>
         </Container>
@@ -165,11 +188,28 @@ export default function Home() {
         </Container>
       </section>
 
+      <section className="py-16 sm:py-20">
+        <Container>
+          <SectionHeader
+            eyebrow="FAQ"
+            title="Straight answers before the first call."
+          />
+          <div className="mt-10 grid gap-4 lg:grid-cols-2">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="surface rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <Container>
         <CTASection
           title="Have a data, AI, or software idea? Let's forge it into a real system."
-          buttonLabel="Email Us"
-          href="mailto:hello@tathyaforge.in"
+          buttonLabel="Book a Discovery Call"
+          href={projectInquiryHref}
         />
       </Container>
     </>

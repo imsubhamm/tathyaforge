@@ -1,13 +1,12 @@
 "use client";
 
 import { FormEvent } from "react";
-import { company } from "@/lib/content";
+import { projectInquiryHref } from "@/lib/content";
 
 export function ContactForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(`Project inquiry from ${form.get("name") ?? ""}`);
     const body = encodeURIComponent(
       [
         `Name: ${form.get("name") ?? ""}`,
@@ -19,11 +18,11 @@ export function ContactForm() {
       ].join("\n"),
     );
 
-    window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
+    window.location.href = `${projectInquiryHref}&body=${body}`;
   }
 
   const inputClass =
-    "min-h-12 rounded-md border border-slate-700/80 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-teal-300";
+    "min-h-12 rounded-md border border-slate-700/80 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-amber-300";
 
   return (
     <form onSubmit={handleSubmit} className="surface grid gap-4 rounded-lg p-5 sm:p-6">
@@ -63,7 +62,7 @@ export function ContactForm() {
       </label>
       <button
         type="submit"
-        className="mt-2 min-h-12 rounded-md bg-teal-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-teal-200"
+        className="mt-2 min-h-12 rounded-md bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-200"
       >
         Open Email Draft
       </button>

@@ -49,7 +49,7 @@ export default function ServicesPage() {
 function ServiceList({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
+      <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
         {title}
       </h3>
       <ul className="mt-4 space-y-3">

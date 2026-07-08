@@ -1,19 +1,18 @@
+import { Logo } from "@/components/Logo";
 import Link from "next/link";
-import { company, navItems, services } from "@/lib/content";
+import { company, footerServiceLinks, navItems } from "@/lib/content";
 
 export function Footer() {
   return (
     <footer className="border-t border-slate-800/80 py-12">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
-          <Link href="/" className="text-lg font-semibold text-white">
-            {company.name}
-          </Link>
+          <Logo variant="dark" />
           <p className="mt-3 text-sm text-slate-300">{company.tagline}</p>
           <p className="mt-5 text-sm text-slate-400">Website: {company.website}</p>
           <p className="mt-2 text-sm text-slate-400">
             Email:{" "}
-            <a className="text-slate-200 hover:text-teal-300" href={`mailto:${company.email}`}>
+            <a className="text-slate-200 hover:text-amber-300" href={`mailto:${company.email}`}>
               {company.email}
             </a>
           </p>
@@ -23,10 +22,10 @@ export function Footer() {
             Services
           </h2>
           <ul className="mt-4 space-y-3">
-            {services.map((service) => (
-              <li key={service.title}>
-                <Link className="text-sm text-slate-300 hover:text-white" href="/services">
-                  {service.title}
+            {footerServiceLinks.map((service) => (
+              <li key={service.label}>
+                <Link className="text-sm text-slate-300 hover:text-white" href={service.href}>
+                  {service.label}
                 </Link>
               </li>
             ))}
@@ -44,6 +43,16 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link className="text-sm text-slate-300 hover:text-white" href="/privacy">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link className="text-sm text-slate-300 hover:text-white" href="/terms">
+                Terms
+              </Link>
+            </li>
           </ul>
           <p className="mt-8 text-sm text-slate-500">
             &copy; {new Date().getFullYear()} {company.name}. All rights reserved.
