@@ -2,6 +2,8 @@ export const company = {
   name: "TathyaForge",
   website: "tathyaforge.in",
   email: "hello@tathyaforge.in",
+  location: "Kolkata, India",
+  linkedin: "https://www.linkedin.com/in/imsubhammondal/",
   tagline: "Data & AI engineered from facts.",
 };
 
@@ -234,22 +236,28 @@ export const values = [
 
 export const caseStudyCards = [
   {
-    title: "Construction ERP Workflow System",
-    eyebrow: "Solution Blueprint",
+    title: "Dascon Construction ERP",
+    eyebrow: "Selected Build / ERP",
     summary:
-      "A role-based workflow platform for project tracking, approvals, vendor coordination, documents, and operational visibility across construction teams. This blueprint is for companies that need stronger process control without forcing the business into a rigid off-the-shelf ERP.",
+      "An end-to-end construction operations platform spanning projects, procurement, inventory, accounts, HR, machinery, production, and administration. The tracked MVP covers 148 completed workflow sections across eight core operating modules.",
+    outcome: "148 MVP sections · 8 core modules · Role and site-based controls",
+    stack: ["React", "Java", "PostgreSQL", "Workflow automation"],
   },
   {
-    title: "Azure, GCP, AWS & Multi-Cloud Data Platform",
-    eyebrow: "Example Solution Area",
+    title: "KenzClub Creator Platform",
+    eyebrow: "Selected Build / SaaS",
     summary:
-      "A modern data foundation across Azure, GCP, AWS, Databricks, warehouses, and multi-cloud services. The focus is trusted datasets, reliable refreshes, governed access, and cleaner reporting paths for business teams.",
+      "A full-stack creator business platform combining profiles, content, fan memberships, paid messages, pay-per-view content, tips, bookings, payments, KYC, and creator earnings in one product.",
+    outcome: "3 membership tiers · 5+ monetization flows · Web and creator operations",
+    stack: ["React", "Node.js", "PostgreSQL", "Payments"],
   },
   {
-    title: "AI-Powered Business Automation",
-    eyebrow: "Solution Blueprint",
+    title: "LaboraIQ Lead Intelligence",
+    eyebrow: "Selected Build / Automation",
     summary:
-      "A practical automation layer for document intake, classification, extraction, review queues, and downstream business actions. Built for controlled business use cases where accuracy, handoff, and review matter.",
+      "A data workflow for discovering creator businesses from public sources, validating and consolidating records, controlling outreach queues, and keeping delivery logs auditable.",
+    outcome: "147-record master dataset · Multi-source discovery · Capped outreach workflow",
+    stack: ["Python", "Data validation", "Automation", "Reporting"],
   },
 ];
 

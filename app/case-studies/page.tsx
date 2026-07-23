@@ -5,9 +5,9 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { caseStudyCards } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Solution Blueprints",
+  title: "Selected Work",
   description:
-    "Explore TathyaForge solution blueprints for construction ERP workflows, Azure, GCP, and AWS data platforms, data science, and AI-powered business automation.",
+    "Explore selected TathyaForge product, ERP, and automation builds.",
   alternates: {
     canonical: "/case-studies",
   },
@@ -18,9 +18,9 @@ export default function CaseStudiesPage() {
     <section className="py-20 sm:py-24">
       <Container>
         <SectionHeader
-          eyebrow="Case studies"
-          title="Solution blueprints, without invented claims."
-          description="These cards describe example solution areas TathyaForge can architect and build. They are intentionally framed as blueprints, not completed client case studies."
+          eyebrow="Selected work"
+          title="Real systems, described without inflated claims."
+          description="A selection of products and operational systems built across construction ERP, creator SaaS, and data-led automation. Metrics reflect the currently tracked project scope."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {caseStudyCards.map((card) => (
@@ -30,9 +30,22 @@ export default function CaseStudiesPage() {
               </p>
               <h2 className="mt-5 text-2xl font-semibold text-slate-950">{card.title}</h2>
               <p className="mt-4 text-sm leading-6 text-slate-600">{card.summary}</p>
+              <p className="mt-6 border-y border-slate-200 py-4 font-mono text-xs font-semibold leading-5 text-slate-700">
+                {card.outcome}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {card.stack.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-md bg-slate-100 px-2.5 py-1.5 text-xs font-medium text-slate-600"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
               <div className="mt-7">
                 <ButtonLink href="/contact" variant="secondary">
-                  Discuss This Area
+                  Build Something Similar
                 </ButtonLink>
               </div>
             </article>

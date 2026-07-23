@@ -10,12 +10,21 @@ export function Footer() {
           <Logo variant="dark" />
           <p className="mt-3 text-sm text-slate-600">{company.tagline}</p>
           <p className="mt-5 text-sm text-slate-500">Website: {company.website}</p>
+          <p className="mt-2 text-sm text-slate-500">Based in {company.location}</p>
           <p className="mt-2 text-sm text-slate-500">
             Email:{" "}
             <a className="text-slate-700 hover:text-amber-700" href={`mailto:${company.email}`}>
               {company.email}
             </a>
           </p>
+          <a
+            className="mt-3 inline-block text-sm text-slate-700 hover:text-amber-700"
+            href={company.linkedin}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Founder LinkedIn ↗
+          </a>
         </div>
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
