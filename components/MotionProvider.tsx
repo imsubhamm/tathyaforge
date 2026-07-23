@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,18 +10,6 @@ export function MotionProvider() {
     if (reduceMotion) return;
 
     gsap.registerPlugin(ScrollTrigger);
-    const useSmoothScroll = window.matchMedia(
-      "(min-width: 768px) and (pointer: fine)",
-    ).matches;
-    const lenis = useSmoothScroll
-      ? new Lenis({
-          autoRaf: true,
-          duration: 0.82,
-          smoothWheel: true,
-          wheelMultiplier: 1,
-        })
-      : null;
-    lenis?.on("scroll", ScrollTrigger.update);
 
     const context = gsap.context(() => {
       gsap.from("[data-nav]", { y: -22, opacity: 0, duration: 0.75, ease: "power3.out" });
@@ -43,11 +30,17 @@ export function MotionProvider() {
         delay: 0.55,
       });
       gsap.to("[data-hero-depth]", {
-        yPercent: 18,
-        scale: 0.92,
-        opacity: 0.5,
-        ease: "none",
-        scrollTrigger: { trigger: "[data-hero]", start: "top top", end: "bottom top", scrub: 0.8 },
+        yPercent: 8,
+        scale: 0.97,
+        opacity: 0.72,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "[data-hero]",
+          start: "top -2%",
+          toggleActions: "play none none none",
+          once: true,
+        },
       });
 
       const story = document.querySelector("[data-story]");
@@ -55,19 +48,25 @@ export function MotionProvider() {
         const storyTimeline = gsap.timeline({
           scrollTrigger: {
             trigger: story,
-            start: "top 72%",
-            end: "bottom 65%",
-            scrub: 0.65,
+            start: "top 78%",
+            toggleActions: "play none none none",
+            once: true,
           },
         });
         storyTimeline
-          .from("[data-story-line]", { scaleX: 0, transformOrigin: "left center", ease: "none" })
+          .from("[data-story-line]", {
+            scaleX: 0,
+            transformOrigin: "left center",
+            duration: 1,
+            ease: "power2.inOut",
+          })
           .from(".story-node", {
             y: 70,
             z: -120,
             rotateX: 8,
             opacity: 0,
             stagger: 0.18,
+            duration: 0.9,
             ease: "power2.out",
           }, 0);
       }
@@ -96,16 +95,8 @@ export function MotionProvider() {
       });
     });
 
-    const onVisibility = () => {
-      if (document.hidden) lenis?.stop();
-      else lenis?.start();
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-
     return () => {
-      document.removeEventListener("visibilitychange", onVisibility);
       context.revert();
-      lenis?.destroy();
     };
   }, []);
 
