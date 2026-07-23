@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { MotionProvider } from "@/components/MotionProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tathyaforge.in"),
@@ -49,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <MotionProvider />
         <Navbar />
         <main>{children}</main>
         <Footer />

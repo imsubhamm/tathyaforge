@@ -20,9 +20,10 @@ export function ButtonLink({
   return (
     <Link
       href={href}
-      className={`inline-flex min-h-11 w-full items-center justify-center rounded-md px-5 py-3 text-sm font-semibold transition sm:w-auto ${classes}`}
+      className={`group relative inline-flex min-h-11 w-full items-center justify-center overflow-hidden rounded-md px-5 py-3 text-sm font-semibold transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300 sm:w-auto ${classes}`}
     >
-      {children}
+      <span className="relative z-10">{children}</span>
+      <span aria-hidden="true" className="relative z-10 ml-2 transition-transform duration-300 group-hover:translate-x-1">↗</span>
     </Link>
   );
 }
