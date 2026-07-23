@@ -45,6 +45,11 @@ export const services = [
       "Create dashboards, forecasts, and decision layers that help leaders see what is happening and what needs attention next.",
   },
   {
+    title: "Multi-cloud Engineering",
+    summary:
+      "Connect Azure, GCP, and AWS into a governed operating model with clear ownership, portable data flows, and cost-aware architecture.",
+  },
+  {
     title: "Custom ERP & SaaS",
     summary:
       "Build role-based portals, approval workflows, and internal systems around how your business actually operates.",
