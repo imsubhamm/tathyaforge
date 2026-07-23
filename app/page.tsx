@@ -6,6 +6,8 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ServiceCard } from "@/components/ServiceCard";
 import { TechStack } from "@/components/TechStack";
 import { DataEngine } from "@/components/DataEngine";
+import { AISystemVisual } from "@/components/AISystemVisual";
+import { SystemStory } from "@/components/SystemStory";
 import {
   faqs,
   howWeWork,
@@ -23,7 +25,7 @@ export default function Home() {
       <section data-hero className="hero-texture relative flex min-h-[calc(100svh-68px)] items-center overflow-hidden py-16 sm:py-20">
         <DataEngine />
         <Container>
-          <div className="relative z-10 grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <div className="relative z-10 grid gap-12 lg:grid-cols-[1.06fr_0.94fr] lg:items-center">
             <div className="hero-copy">
               <p data-hero-copy className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">
                 TathyaForge
@@ -54,28 +56,15 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div data-hero-copy className="engineering-panel surface rounded-xl p-5 sm:p-7">
-              <div className="accent-line mb-6 h-px w-full" />
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Engineering focus
-              </p>
-              <div className="mt-6 grid gap-4">
-                {[
-                  "Azure, GCP, AWS, and cloud data foundations built for reliability.",
-                  "AI workflows with human review, approval, and control built in",
-                  "Business workflows translated into maintainable software",
-                  "Dashboards and reporting layers built for decisions",
-                ].map((item) => (
-                  <div key={item} className="rounded-md border border-slate-800 bg-slate-950/55 p-4">
-                    <p className="text-base font-medium leading-7 text-slate-100">{item}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="w-full min-w-0">
+              <AISystemVisual />
             </div>
           </div>
         </Container>
         <div data-hero-copy className="scroll-cue" aria-hidden="true"><span /> Scroll to explore</div>
       </section>
+
+      <SystemStory />
 
       <section className="py-16 sm:py-20">
         <Container>
