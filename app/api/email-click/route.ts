@@ -20,7 +20,9 @@ export async function GET(request: NextRequest) {
     medium: "email",
     ipHash: hashIp(clientIp(request.headers)),
   });
-  const destination = new URL(destinations[target] || "/", request.nextUrl.origin);
+  const publicOrigin =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://tathyaforge.in";
+  const destination = new URL(destinations[target] || "/", publicOrigin);
   destination.searchParams.set("utm_source", "outreach");
   destination.searchParams.set("utm_medium", "email");
   destination.searchParams.set("utm_campaign", "creator_outreach");
