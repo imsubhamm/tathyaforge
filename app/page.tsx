@@ -55,6 +55,13 @@ export default function Home() {
                   </span>
                 ))}
               </div>
+              <p
+                data-hero-copy
+                className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500"
+              >
+                Founder-led delivery&nbsp;&nbsp;•&nbsp;&nbsp; Weekly working
+                updates&nbsp;&nbsp;•&nbsp;&nbsp; Documentation included
+              </p>
             </div>
             <div className="w-full min-w-0">
               <AISystemVisual />
@@ -65,6 +72,49 @@ export default function Home() {
       </section>
 
       <SystemStory />
+
+      <section className="border-b border-slate-200/80 bg-white/35 py-16 sm:py-20">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <SectionHeader
+              eyebrow="The engagement standard"
+              title="No black box. You see the system take shape."
+              description="A strong technical partner should reduce uncertainty from the first week—not ask you to wait until the end to find out what was built."
+            />
+            <div data-stagger className="grid gap-4 sm:grid-cols-3">
+              {[
+                {
+                  step: "01",
+                  title: "Start with clarity",
+                  copy: "Architecture, risks, scope, and the delivery path are made visible before build decisions harden.",
+                },
+                {
+                  step: "02",
+                  title: "See working progress",
+                  copy: "You get regular working increments and clear decisions—not presentation-only status updates.",
+                },
+                {
+                  step: "03",
+                  title: "Own the outcome",
+                  copy: "Maintainable code, practical documentation, handover, and a clear support path are part of delivery.",
+                },
+              ].map((item) => (
+                <article key={item.step} className="surface rounded-xl p-6">
+                  <span className="font-mono text-xs font-semibold text-amber-700">
+                    {item.step}
+                  </span>
+                  <h3 className="mt-5 text-lg font-semibold text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {item.copy}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
 
       <section className="py-16 sm:py-20">
         <Container>
@@ -220,7 +270,7 @@ export default function Home() {
       <Container>
         <CTASection
           title="Have a data, AI, or software idea? Let's forge it into a real system."
-          buttonLabel="Book a Discovery Call"
+          buttonLabel="Discuss Your Project"
           href={projectInquiryHref}
         />
       </Container>
