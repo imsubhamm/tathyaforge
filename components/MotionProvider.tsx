@@ -50,6 +50,28 @@ export function MotionProvider() {
         scrollTrigger: { trigger: "[data-hero]", start: "top top", end: "bottom top", scrub: 0.8 },
       });
 
+      const story = document.querySelector("[data-story]");
+      if (story) {
+        const storyTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: story,
+            start: "top 72%",
+            end: "bottom 65%",
+            scrub: 0.65,
+          },
+        });
+        storyTimeline
+          .from("[data-story-line]", { scaleX: 0, transformOrigin: "left center", ease: "none" })
+          .from(".story-node", {
+            y: 70,
+            z: -120,
+            rotateX: 8,
+            opacity: 0,
+            stagger: 0.18,
+            ease: "power2.out",
+          }, 0);
+      }
+
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
         gsap.from(element, {
           y: 38,
