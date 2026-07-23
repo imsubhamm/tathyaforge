@@ -11,16 +11,18 @@ export function MotionProvider() {
     if (reduceMotion) return;
 
     gsap.registerPlugin(ScrollTrigger);
-    const lenis = new Lenis({
-      duration: 1.05,
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-    });
-
-    const update = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(update);
-    gsap.ticker.lagSmoothing(0);
-    lenis.on("scroll", ScrollTrigger.update);
+    const useSmoothScroll = window.matchMedia(
+      "(min-width: 768px) and (pointer: fine)",
+    ).matches;
+    const lenis = useSmoothScroll
+      ? new Lenis({
+          autoRaf: true,
+          duration: 0.82,
+          smoothWheel: true,
+          wheelMultiplier: 1,
+        })
+      : null;
+    lenis?.on("scroll", ScrollTrigger.update);
 
     const context = gsap.context(() => {
       gsap.from("[data-nav]", { y: -22, opacity: 0, duration: 0.75, ease: "power3.out" });
@@ -35,7 +37,6 @@ export function MotionProvider() {
       gsap.from("[data-hero-copy]", {
         y: 24,
         opacity: 0,
-        filter: "blur(8px)",
         stagger: 0.12,
         duration: 0.85,
         ease: "power3.out",
@@ -53,7 +54,6 @@ export function MotionProvider() {
         gsap.from(element, {
           y: 38,
           opacity: 0,
-          filter: "blur(7px)",
           duration: 0.9,
           ease: "power3.out",
           scrollTrigger: { trigger: element, start: "top 88%", once: true },
@@ -75,16 +75,15 @@ export function MotionProvider() {
     });
 
     const onVisibility = () => {
-      if (document.hidden) lenis.stop();
-      else lenis.start();
+      if (document.hidden) lenis?.stop();
+      else lenis?.start();
     };
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       document.removeEventListener("visibilitychange", onVisibility);
       context.revert();
-      gsap.ticker.remove(update);
-      lenis.destroy();
+      lenis?.destroy();
     };
   }, []);
 
