@@ -27,7 +27,7 @@ export default function ServicesPage() {
             <article key={service.title} className="surface rounded-lg p-6 sm:p-8">
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div>
-                  <h2 className="text-2xl font-semibold text-white">{service.title}</h2>
+                  <h2 className="text-2xl font-semibold text-slate-950">{service.title}</h2>
                   <div className="mt-6">
                     <ButtonLink href="/contact">Contact TathyaForge</ButtonLink>
                   </div>
@@ -49,12 +49,12 @@ export default function ServicesPage() {
 function ServiceList({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
+      <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">
         {title}
       </h3>
       <ul className="mt-4 space-y-3">
         {items.map((item) => (
-          <li key={item} className="text-sm leading-6 text-slate-300">
+          <li key={item} className="text-sm leading-6 text-slate-600">
             {item}
           </li>
         ))}

@@ -23,14 +23,14 @@ export default function AboutPage() {
             description="TathyaForge builds reliable data platforms, AI automation workflows, dashboards, and custom software for companies that need practical systems rather than presentation-only strategy."
           />
           <div className="surface rounded-lg p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold text-white">The name</h2>
-            <p className="mt-4 leading-7 text-slate-300">
+            <h2 className="text-2xl font-semibold text-slate-950">The name</h2>
+            <p className="mt-4 leading-7 text-slate-600">
               &quot;Tathya&quot; means fact, truth, and data. &quot;Forge&quot; means to build,
               engineer, and create strong systems. Together, TathyaForge reflects
               the company&apos;s belief that durable technology starts with real facts
               and becomes valuable through disciplined engineering.
             </p>
-            <p className="mt-5 leading-7 text-slate-300">
+            <p className="mt-5 leading-7 text-slate-600">
               The company is founder-led, which means clients work close to the
               engineering judgment behind the architecture, roadmap, delivery, and
               long-term maintainability of each system.
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {values.map((value) => (
               <article key={value} className="surface rounded-lg p-5">
-                <h3 className="text-lg font-semibold text-white">{value}</h3>
+                <h3 className="text-lg font-semibold text-slate-950">{value}</h3>
               </article>
             ))}
           </div>

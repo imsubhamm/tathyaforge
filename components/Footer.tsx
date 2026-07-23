@@ -4,15 +4,15 @@ import { company, footerServiceLinks, navItems } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800/80 py-12">
+    <footer className="border-t border-slate-200/80 bg-white/35 py-12">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <Logo variant="dark" />
-          <p className="mt-3 text-sm text-slate-300">{company.tagline}</p>
-          <p className="mt-5 text-sm text-slate-400">Website: {company.website}</p>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-3 text-sm text-slate-600">{company.tagline}</p>
+          <p className="mt-5 text-sm text-slate-500">Website: {company.website}</p>
+          <p className="mt-2 text-sm text-slate-500">
             Email:{" "}
-            <a className="text-slate-200 hover:text-amber-300" href={`mailto:${company.email}`}>
+            <a className="text-slate-700 hover:text-amber-700" href={`mailto:${company.email}`}>
               {company.email}
             </a>
           </p>
@@ -24,7 +24,7 @@ export function Footer() {
           <ul className="mt-4 space-y-3">
             {footerServiceLinks.map((service) => (
               <li key={service.label}>
-                <Link className="text-sm text-slate-300 hover:text-white" href={service.href}>
+                <Link className="text-sm text-slate-600 hover:text-slate-950" href={service.href}>
                   {service.label}
                 </Link>
               </li>
@@ -38,18 +38,18 @@ export function Footer() {
           <ul className="mt-4 space-y-3">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link className="text-sm text-slate-300 hover:text-white" href={item.href}>
+                <Link className="text-sm text-slate-600 hover:text-slate-950" href={item.href}>
                   {item.label}
                 </Link>
               </li>
             ))}
             <li>
-              <Link className="text-sm text-slate-300 hover:text-white" href="/privacy">
+              <Link className="text-sm text-slate-600 hover:text-slate-950" href="/privacy">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link className="text-sm text-slate-300 hover:text-white" href="/terms">
+              <Link className="text-sm text-slate-600 hover:text-slate-950" href="/terms">
                 Terms
               </Link>
             </li>

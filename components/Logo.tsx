@@ -15,7 +15,7 @@ export function Logo({
 }: LogoProps) {
   const backgroundClass =
     variant === "dark"
-      ? "rounded-lg border border-slate-800 bg-slate-950/95 px-3 py-2"
+      ? "rounded-lg border border-slate-200 bg-white/90 px-3 py-2 shadow-sm"
       : "";
 
   return (
@@ -26,7 +26,7 @@ export function Logo({
     >
       <LogoMark className={`${markClassName} shrink-0`} />
       {showWordmark ? (
-        <span className="text-xl font-semibold tracking-tight text-slate-50">
+        <span className="text-xl font-semibold tracking-tight text-slate-950">
           TathyaForge
         </span>
       ) : null}

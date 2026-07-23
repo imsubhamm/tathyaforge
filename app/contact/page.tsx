@@ -24,20 +24,20 @@ export default function ContactPage() {
               title="Tell us what you want to build."
               description="We'll help you shape the architecture, roadmap, and delivery plan."
             />
-            <div className="mt-8 rounded-lg border border-slate-800 bg-slate-950/45 p-5">
+            <div className="mt-8 rounded-lg border border-slate-200 bg-white/75 p-5 shadow-sm">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
                 Email
               </p>
               <a
                 href={`mailto:${company.email}`}
-                className="mt-3 inline-block text-lg font-semibold text-white transition hover:text-amber-300"
+                className="mt-3 inline-block text-lg font-semibold text-slate-950 transition hover:text-amber-700"
               >
                 {company.email}
               </a>
               <div className="mt-6">
                 <a
                   href={projectInquiryHref}
-                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-200"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-amber-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-amber-600"
                 >
                   Email TathyaForge
                 </a>

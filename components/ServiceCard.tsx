@@ -48,9 +48,9 @@ export function ServiceCard({ title, summary }: ServiceCardProps) {
 
   return (
     <article ref={cardRef} onPointerEnter={onEnter} onPointerMove={onMove} onPointerLeave={onLeave} className="service-card surface rounded-xl p-6">
-      <div className="mb-5 h-1 w-12 rounded-full bg-amber-300" />
-      <h3 className="text-xl font-semibold text-white">{title}</h3>
-      <p className="mt-3 text-sm leading-6 text-slate-300">{summary}</p>
+      <div className="mb-5 h-1 w-12 rounded-full bg-amber-500" />
+      <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-slate-600">{summary}</p>
     </article>
   );
 }

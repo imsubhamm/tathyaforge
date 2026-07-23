@@ -20,7 +20,7 @@ export default function TermsPage() {
           title="Website Terms"
           description="This website describes TathyaForge services and example solution areas for prospective clients."
         />
-        <div className="surface mt-10 max-w-3xl rounded-lg p-6 text-sm leading-7 text-slate-300 sm:p-8">
+        <div className="surface mt-10 max-w-3xl rounded-lg p-6 text-sm leading-7 text-slate-600 sm:p-8">
           <p>
             Website content is provided for general business information and does
             not create a client relationship by itself. Project scope, timelines,
@@ -33,7 +33,7 @@ export default function TermsPage() {
           </p>
           <p className="mt-5">
             For questions, email{" "}
-            <a className="text-amber-300 hover:text-amber-200" href={`mailto:${company.email}`}>
+            <a className="text-amber-700 hover:text-amber-800" href={`mailto:${company.email}`}>
               {company.email}
             </a>
             .

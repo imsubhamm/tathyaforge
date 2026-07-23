@@ -64,7 +64,7 @@ export function DataEngine() {
           const dy = projected[i].y - projected[j].y;
           const distance = Math.hypot(dx, dy);
           if (distance < 145) {
-            context.strokeStyle = `rgba(148, 163, 184, ${0.13 * (1 - distance / 145)})`;
+            context.strokeStyle = `rgba(51, 65, 85, ${0.18 * (1 - distance / 145)})`;
             context.lineWidth = 0.7;
             context.beginPath();
             context.moveTo(projected[i].x, projected[i].y);
@@ -76,7 +76,7 @@ export function DataEngine() {
 
       projected.forEach((point, index) => {
         const pulse = reduced ? 0 : Math.sin(time * 0.001 + index) * 0.5;
-        context.fillStyle = index % 7 === 0 ? "rgba(251,191,36,.92)" : "rgba(148,197,255,.68)";
+        context.fillStyle = index % 7 === 0 ? "rgba(217,119,6,.9)" : "rgba(37,99,235,.58)";
         context.beginPath();
         context.arc(point.x, point.y, 1.4 + point.z * 2 + pulse, 0, Math.PI * 2);
         context.fill();

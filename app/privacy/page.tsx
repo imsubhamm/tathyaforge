@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           title="Privacy Policy"
           description="TathyaForge only asks for the information needed to understand and respond to project inquiries."
         />
-        <div className="surface mt-10 max-w-3xl rounded-lg p-6 text-sm leading-7 text-slate-300 sm:p-8">
+        <div className="surface mt-10 max-w-3xl rounded-lg p-6 text-sm leading-7 text-slate-600 sm:p-8">
           <p>
             If you contact TathyaForge, the details you provide may be used to
             respond to your inquiry, discuss project requirements, and prepare a
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           </p>
           <p className="mt-5">
             For privacy questions, email{" "}
-            <a className="text-amber-300 hover:text-amber-200" href={`mailto:${company.email}`}>
+            <a className="text-amber-700 hover:text-amber-800" href={`mailto:${company.email}`}>
               {company.email}
             </a>
             .

@@ -27,14 +27,14 @@ export default function Home() {
         <Container>
           <div className="relative z-10 grid gap-12 lg:grid-cols-[1.06fr_0.94fr] lg:items-center">
             <div className="hero-copy">
-              <p data-hero-copy className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">
+              <p data-hero-copy className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
                 TathyaForge
               </p>
-              <h1 className="max-w-4xl text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+              <h1 className="max-w-4xl text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-slate-950 sm:text-6xl lg:text-7xl">
                 <span className="hero-line"><span data-hero-reveal>Data & AI systems</span></span>
                 <span className="hero-line"><span data-hero-reveal className="text-gradient">engineered from facts.</span></span>
               </h1>
-              <p data-hero-copy className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+              <p data-hero-copy className="mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 We build reliable data platforms, AI automation workflows,
                 dashboards, and custom software that help teams move from scattered
                 processes to scalable systems.
@@ -49,7 +49,7 @@ export default function Home() {
                 {serviceChips.map((chip) => (
                   <span
                     key={chip}
-                    className="rounded-md border border-slate-700/80 bg-slate-950/50 px-3 py-2 text-sm text-slate-200"
+                    className="rounded-md border border-slate-200 bg-white/70 px-3 py-2 text-sm text-slate-700 shadow-sm"
                   >
                     {chip}
                   </span>
@@ -91,8 +91,8 @@ export default function Home() {
           <div data-stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {howWeWork.map((item) => (
               <article key={item} className="surface rounded-lg p-5">
-                <div className="mb-4 h-1 w-10 rounded-full bg-amber-300" />
-                <h3 className="text-base font-semibold leading-6 text-white">{item}</h3>
+                <div className="mb-4 h-1 w-10 rounded-full bg-amber-500" />
+                <h3 className="text-base font-semibold leading-6 text-slate-950">{item}</h3>
               </article>
             ))}
           </div>
@@ -110,7 +110,7 @@ export default function Home() {
             <div data-stagger className="grid gap-4 sm:grid-cols-2">
               {whoWeHelp.map((item) => (
                 <article key={item} className="surface rounded-lg p-5">
-                  <p className="text-sm leading-6 text-slate-200">{item}</p>
+                  <p className="text-sm leading-6 text-slate-700">{item}</p>
                 </article>
               ))}
             </div>
@@ -134,7 +134,7 @@ export default function Home() {
                 "Maintainable code, documentation, and support paths",
               ].map((point) => (
                 <div key={point} className="surface rounded-lg p-5">
-                  <p className="text-sm leading-6 text-slate-200">{point}</p>
+                  <p className="text-sm leading-6 text-slate-700">{point}</p>
                 </div>
               ))}
             </div>
@@ -165,11 +165,11 @@ export default function Home() {
           <div data-stagger className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {solutionBlueprints.map((blueprint) => (
               <article key={blueprint.title} className="surface rounded-lg p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">
                   Blueprint
                 </p>
-                <h3 className="mt-5 text-xl font-semibold text-white">{blueprint.title}</h3>
-                <p className="mt-4 text-sm leading-6 text-slate-300">{blueprint.summary}</p>
+                <h3 className="mt-5 text-xl font-semibold text-slate-950">{blueprint.title}</h3>
+                <p className="mt-4 text-sm leading-6 text-slate-600">{blueprint.summary}</p>
               </article>
             ))}
           </div>
@@ -209,8 +209,8 @@ export default function Home() {
           <div data-stagger className="mt-10 grid gap-4 lg:grid-cols-2">
             {faqs.map((faq) => (
               <article key={faq.question} className="surface rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{faq.answer}</p>
+                <h3 className="text-lg font-semibold text-slate-950">{faq.question}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{faq.answer}</p>
               </article>
             ))}
           </div>

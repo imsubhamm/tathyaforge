@@ -14,8 +14,8 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   const classes =
     variant === "primary"
-      ? "bg-amber-300 text-slate-950 hover:bg-amber-200"
-      : "border border-slate-700/80 bg-slate-950/35 text-slate-100 hover:border-amber-300/70 hover:text-white";
+      ? "bg-amber-500 text-white shadow-[0_10px_25px_rgba(217,119,6,.2)] hover:bg-amber-600"
+      : "border border-slate-300 bg-white/70 text-slate-800 hover:border-amber-500/70 hover:text-slate-950";
 
   return (
     <Link
