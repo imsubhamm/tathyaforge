@@ -3,6 +3,8 @@ import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { MotionProvider } from "@/components/MotionProvider";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
+import { ClientAssistant } from "@/components/ClientAssistant";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tathyaforge.in"),
@@ -50,9 +52,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <AnalyticsTracker />
         <MotionProvider />
         <Navbar />
         <main>{children}</main>
+        <ClientAssistant />
         <Footer />
       </body>
     </html>

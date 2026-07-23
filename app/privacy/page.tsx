@@ -31,6 +31,19 @@ export default function PrivacyPage() {
             shared during discovery is treated as confidential business context.
           </p>
           <p className="mt-5">
+            The website records first-party usage information such as pages
+            visited, campaign parameters, referring website, general device type,
+            browser language, timezone, assistant activity, and meeting requests.
+            Network addresses are stored only as a one-way shortened hash for
+            basic unique-visit and abuse analysis.
+          </p>
+          <p className="mt-5">
+            Outreach emails may contain a unique link and a small tracking image
+            to estimate opens, clicks, and resulting website visits. Open counts
+            are approximate because email applications may block images, preload
+            them, or protect recipient privacy.
+          </p>
+          <p className="mt-5">
             For privacy questions, email{" "}
             <a className="text-amber-700 hover:text-amber-800" href={`mailto:${company.email}`}>
               {company.email}
