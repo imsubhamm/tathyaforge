@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { trackEvent } from "@/components/AnalyticsTracker";
 
 type Step = "need" | "offer" | "identity" | "time" | "done";
@@ -61,6 +61,15 @@ export function ClientAssistant() {
     const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000);
     return tomorrow.toISOString().slice(0, 10);
   });
+
+  useEffect(() => {
+    const openFromCta = () => {
+      setOpen(true);
+      trackEvent("assistant_open", { path: window.location.pathname, content: "primary_cta" });
+    };
+    window.addEventListener("tathya:open-assistant", openFromCta);
+    return () => window.removeEventListener("tathya:open-assistant", openFromCta);
+  }, []);
 
   const toggle = () => {
     const next = !open;

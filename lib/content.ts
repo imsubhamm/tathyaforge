@@ -7,8 +7,7 @@ export const company = {
   tagline: "Data & AI engineered from facts.",
 };
 
-export const projectInquiryHref =
-  "mailto:hello@tathyaforge.in?subject=Project%20Inquiry%20for%20TathyaForge";
+export const projectInquiryHref = "#project-assistant";
 
 export const navItems = [
   { label: "Services", href: "/services" },
@@ -241,6 +240,20 @@ export const caseStudyCards = [
     summary:
       "An end-to-end construction operations platform spanning projects, procurement, inventory, accounts, HR, machinery, production, and administration. The tracked MVP covers 148 completed workflow sections across eight core operating modules.",
     outcome: "148 MVP sections · 8 core modules · Role and site-based controls",
+    problem:
+      "Construction operations were spread across project, procurement, inventory, finance, people, and site workflows that needed one controlled operating layer.",
+    delivered: [
+      "Project and site operations",
+      "Procurement and inventory workflows",
+      "Accounts, HR, and machinery modules",
+      "Role and site-based access controls",
+    ],
+    architecture: ["Operational intake", "Rules & approvals", "ERP modules", "Management visibility"],
+    proof: [
+      { value: "148", label: "tracked MVP sections" },
+      { value: "8", label: "core operating modules" },
+      { value: "2-layer", label: "role + site control" },
+    ],
     stack: ["React", "Java", "PostgreSQL", "Workflow automation"],
   },
   {
@@ -249,6 +262,20 @@ export const caseStudyCards = [
     summary:
       "A full-stack creator business platform combining profiles, content, fan memberships, paid messages, pay-per-view content, tips, bookings, payments, KYC, and creator earnings in one product.",
     outcome: "3 membership tiers · 5+ monetization flows · Web and creator operations",
+    problem:
+      "Creators needed a single product for audience access, paid interactions, bookings, compliance, and earnings instead of disconnected tools.",
+    delivered: [
+      "Creator profiles and content publishing",
+      "Memberships and paid messaging",
+      "PPV, tips, and service bookings",
+      "Payments, KYC, and earnings operations",
+    ],
+    architecture: ["Creator identity", "Content & access", "Payment events", "Earnings operations"],
+    proof: [
+      { value: "3", label: "membership tiers" },
+      { value: "5+", label: "monetization flows" },
+      { value: "1", label: "unified creator platform" },
+    ],
     stack: ["React", "Node.js", "PostgreSQL", "Payments"],
   },
   {
@@ -257,6 +284,20 @@ export const caseStudyCards = [
     summary:
       "A data workflow for discovering creator businesses from public sources, validating and consolidating records, controlling outreach queues, and keeping delivery logs auditable.",
     outcome: "147-record master dataset · Multi-source discovery · Capped outreach workflow",
+    problem:
+      "Lead discovery and outreach needed a repeatable data process with deduplication, validation, limits, and an auditable delivery trail.",
+    delivered: [
+      "Multi-source business discovery",
+      "Record normalization and deduplication",
+      "Controlled outreach queues",
+      "Delivery logs and reporting",
+    ],
+    architecture: ["Source discovery", "Validate & merge", "Queue controls", "Auditable delivery"],
+    proof: [
+      { value: "147", label: "validated master records" },
+      { value: "Multi", label: "source discovery" },
+      { value: "Capped", label: "outreach execution" },
+    ],
     stack: ["Python", "Data validation", "Automation", "Reporting"],
   },
 ];

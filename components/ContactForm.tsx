@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent } from "react";
-import { projectInquiryHref } from "@/lib/content";
+import { company } from "@/lib/content";
 
 export function ContactForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -18,7 +18,7 @@ export function ContactForm() {
       ].join("\n"),
     );
 
-    window.location.href = `${projectInquiryHref}&body=${body}`;
+    window.location.href = `mailto:${company.email}?subject=Project%20Inquiry%20for%20TathyaForge&body=${body}`;
   }
 
   const inputClass =

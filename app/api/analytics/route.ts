@@ -10,7 +10,22 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const events = await readEvents();
+  const allEvents = await readEvents(100000);
+  const fromParam = request.nextUrl.searchParams.get("from");
+  const toParam = request.nextUrl.searchParams.get("to");
+  const daysParam = Number(request.nextUrl.searchParams.get("days"));
+  const now = new Date();
+  const automaticFrom =
+    Number.isFinite(daysParam) && daysParam > 0
+      ? new Date(now.getTime() - (daysParam - 1) * 86_400_000)
+      : null;
+  if (automaticFrom) automaticFrom.setUTCHours(0, 0, 0, 0);
+  const from = fromParam ? new Date(`${fromParam}T00:00:00.000Z`) : automaticFrom;
+  const to = toParam ? new Date(`${toParam}T23:59:59.999Z`) : null;
+  const events = allEvents.filter((event) => {
+    const date = new Date(event.at);
+    return (!from || date >= from) && (!to || date <= to);
+  });
   const pageViews = events.filter((event) => event.type === "page_view");
   const uniqueVisitors = new Set(
     pageViews.map((event) => event.visitorId || event.ipHash).filter(Boolean),
@@ -43,7 +58,52 @@ export async function GET(request: NextRequest) {
       .slice(0, 20);
   };
 
+  const dailyMap = new Map<
+    string,
+    {
+      date: string;
+      pageViews: number;
+      visitors: Set<string>;
+      assistantOpens: number;
+      meetingRequests: number;
+      emailOpens: number;
+      emailClicks: number;
+    }
+  >();
+  events.forEach((event) => {
+    const date = event.at.slice(0, 10);
+    const day = dailyMap.get(date) || {
+      date,
+      pageViews: 0,
+      visitors: new Set<string>(),
+      assistantOpens: 0,
+      meetingRequests: 0,
+      emailOpens: 0,
+      emailClicks: 0,
+    };
+    if (event.type === "page_view") {
+      day.pageViews += 1;
+      const visitor = event.visitorId || event.ipHash;
+      if (visitor) day.visitors.add(visitor);
+    }
+    if (event.type === "assistant_open") day.assistantOpens += 1;
+    if (event.type === "meeting_request") day.meetingRequests += 1;
+    if (event.type === "email_open") day.emailOpens += 1;
+    if (event.type === "email_click") day.emailClicks += 1;
+    dailyMap.set(date, day);
+  });
+
+  const availableDates = allEvents.map((event) => event.at).sort();
+
   return NextResponse.json({
+    available: {
+      from: availableDates[0] || null,
+      to: availableDates.at(-1) || null,
+    },
+    range: {
+      from: from?.toISOString() || null,
+      to: to?.toISOString() || null,
+    },
     totals: {
       pageViews: pageViews.length,
       uniqueVisitors,
@@ -58,7 +118,9 @@ export async function GET(request: NextRequest) {
     sources: countBy("source", "page_view"),
     campaigns: countBy("campaign", "page_view"),
     timezones: countBy("timezone", "page_view"),
-    recent: events.slice(-100).reverse(),
+    daily: [...dailyMap.values()]
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .map(({ visitors, ...day }) => ({ ...day, uniqueVisitors: visitors.size })),
+    recent: events.slice(-200).reverse(),
   });
 }
-
