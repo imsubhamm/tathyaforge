@@ -5,7 +5,10 @@ import path from "path";
 const GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
 const GOOGLE_CALENDAR_API = "https://www.googleapis.com/calendar/v3";
-const CALENDAR_SCOPE = "https://www.googleapis.com/auth/calendar.events";
+const CALENDAR_SCOPES = [
+  "https://www.googleapis.com/auth/calendar.events",
+  "https://www.googleapis.com/auth/calendar.readonly",
+].join(" ");
 
 type StoredTokens = {
   refreshToken: string;
@@ -70,7 +73,7 @@ export function googleAuthorizationUrl() {
   url.searchParams.set("client_id", required("GOOGLE_CLIENT_ID"));
   url.searchParams.set("redirect_uri", redirectUri());
   url.searchParams.set("response_type", "code");
-  url.searchParams.set("scope", CALENDAR_SCOPE);
+  url.searchParams.set("scope", CALENDAR_SCOPES);
   url.searchParams.set("access_type", "offline");
   url.searchParams.set("prompt", "consent");
   url.searchParams.set("include_granted_scopes", "true");
