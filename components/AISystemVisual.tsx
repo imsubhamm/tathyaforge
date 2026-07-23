@@ -6,7 +6,7 @@ const signals = [
 
 export function AISystemVisual() {
   return (
-    <div className="ai-system" data-hero-copy aria-label="Animated AI orchestration system">
+    <div className="ai-system" aria-label="Animated AI orchestration system">
       <div className="ai-system-topline">
         <span><i /> TATHYA AI ENGINE</span>
         <span>LIVE / 99.98%</span>
