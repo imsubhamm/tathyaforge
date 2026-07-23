@@ -15,7 +15,7 @@ export function DataEngine() {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobile = window.matchMedia("(max-width: 767px)").matches;
-    const points: Point[] = Array.from({ length: mobile ? 22 : 48 }, (_, index) => ({
+    const points: Point[] = Array.from({ length: mobile ? 14 : 38 }, (_, index) => ({
       x: ((index * 79) % 101) / 100,
       y: ((index * 47) % 97) / 100,
       z: 0.25 + ((index * 31) % 70) / 100,
@@ -24,11 +24,13 @@ export function DataEngine() {
     let width = 0;
     let height = 0;
     let frame = 0;
+    let visible = true;
+    let lastDraw = 0;
     let pointerX = 0;
     let pointerY = 0;
 
     const resize = () => {
-      const ratio = Math.min(window.devicePixelRatio, 2);
+      const ratio = mobile ? 1 : Math.min(window.devicePixelRatio, 1.5);
       width = canvas.clientWidth;
       height = canvas.clientHeight;
       canvas.width = width * ratio;
@@ -37,6 +39,15 @@ export function DataEngine() {
     };
 
     const draw = (time = 0) => {
+      if (!visible || document.hidden) {
+        frame = 0;
+        return;
+      }
+      if (mobile && time - lastDraw < 33) {
+        frame = requestAnimationFrame(draw);
+        return;
+      }
+      lastDraw = time;
       context.clearRect(0, 0, width, height);
       const projected = points.map((point, index) => {
         const drift = reduced ? 0 : Math.sin(time * point.speed + index) * 7;
@@ -71,7 +82,7 @@ export function DataEngine() {
         context.fill();
       });
 
-      if (!reduced && !document.hidden) frame = requestAnimationFrame(draw);
+      if (!reduced) frame = requestAnimationFrame(draw);
     };
 
     const onPointer = (event: PointerEvent) => {
@@ -80,13 +91,38 @@ export function DataEngine() {
     };
     resize();
     draw();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible && !reduced && !frame && !document.hidden) {
+          frame = requestAnimationFrame(draw);
+        } else if (!visible && frame) {
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
+      },
+      { rootMargin: "120px 0px" },
+    );
+    observer.observe(canvas);
+
+    const onVisibility = () => {
+      if (document.hidden && frame) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      } else if (!document.hidden && visible && !reduced && !frame) {
+        frame = requestAnimationFrame(draw);
+      }
+    };
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onVisibility);
     if (!mobile) window.addEventListener("pointermove", onPointer, { passive: true });
 
     return () => {
       cancelAnimationFrame(frame);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onPointer);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 

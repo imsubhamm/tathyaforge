@@ -117,8 +117,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 767px) {
   .data-engine { opacity:.34; }
   .data-core { width:84px; right:22%; top:25%; }
+  .data-core span { animation:none; }
   .data-panel { display:none; }
   .scroll-cue { display:none; }
+  .engineering-panel,
+  header { backdrop-filter:none; }
+  .surface { box-shadow:0 14px 44px rgba(0,0,0,.2); }
 }
 
 @media (prefers-reduced-motion: reduce) {
