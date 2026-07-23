@@ -58,8 +58,22 @@ export function MotionProvider() {
       const cameraStory = document.querySelector("[data-camera-story]");
       if (cameraStory && desktop) {
         const panels = gsap.utils.toArray<HTMLElement>("[data-camera-panel]");
-        gsap.set(panels, { transformOrigin: "center center" });
-        gsap.set(panels.slice(1), { z: -520, yPercent: 28, opacity: 0 });
+        gsap.set(panels, {
+          autoAlpha: 0,
+          z: -120,
+          yPercent: 8,
+          rotateX: 3,
+          scale: 0.985,
+          transformOrigin: "center center",
+        });
+        gsap.set(panels[0], {
+          autoAlpha: 1,
+          z: 0,
+          yPercent: 0,
+          rotateX: 0,
+          scale: 1,
+          zIndex: 3,
+        });
 
         const cameraTimeline = gsap.timeline({
           scrollTrigger: {
@@ -74,16 +88,77 @@ export function MotionProvider() {
         });
 
         cameraTimeline
-          .to("[data-camera-progress]", { scaleY: 0.34, transformOrigin: "top", ease: "none" }, 0)
-          .to(panels[0], { z: 360, yPercent: -35, rotateX: -8, opacity: 0, ease: "power2.in" }, 0.1)
-          .to(panels[1], { z: 0, yPercent: 0, opacity: 1, ease: "power2.out" }, 0.18)
-          .to("[data-camera-world]", { rotateY: -2.5, ease: "sine.inOut" }, 0.18)
-          .to("[data-camera-progress]", { scaleY: 0.67, ease: "none" }, 0.42)
-          .to(panels[1], { z: 360, yPercent: -35, rotateX: -8, opacity: 0, ease: "power2.in" }, 0.48)
-          .to(panels[2], { z: 0, yPercent: 0, opacity: 1, ease: "power2.out" }, 0.56)
-          .to("[data-camera-world]", { rotateY: 2.5, ease: "sine.inOut" }, 0.56)
-          .to("[data-camera-progress]", { scaleY: 1, ease: "none" }, 0.78)
-          .to(panels[2], { scale: 1.035, ease: "power2.out" }, 0.82);
+          .to("[data-camera-progress]", {
+            scaleY: 0.34,
+            transformOrigin: "top",
+            duration: 0.72,
+            ease: "none",
+          }, 0)
+          .to(panels[0], {
+            autoAlpha: 0,
+            z: 260,
+            yPercent: -22,
+            rotateX: -7,
+            scale: 1.025,
+            duration: 0.22,
+            ease: "power2.in",
+          }, 0.72)
+          .set(panels[0], { zIndex: 1 }, 0.94)
+          .set(panels[1], { zIndex: 3 }, 0.94)
+          .to(panels[1], {
+            autoAlpha: 1,
+            z: 0,
+            yPercent: 0,
+            rotateX: 0,
+            scale: 1,
+            duration: 0.22,
+            ease: "power3.out",
+          }, 0.94)
+          .to("[data-camera-world]", {
+            rotateY: -2.5,
+            duration: 0.44,
+            ease: "sine.inOut",
+          }, 0.94)
+          .to("[data-camera-progress]", {
+            scaleY: 0.67,
+            duration: 0.72,
+            ease: "none",
+          }, 1.16)
+          .to(panels[1], {
+            autoAlpha: 0,
+            z: 260,
+            yPercent: -22,
+            rotateX: -7,
+            scale: 1.025,
+            duration: 0.22,
+            ease: "power2.in",
+          }, 1.88)
+          .set(panels[1], { zIndex: 1 }, 2.1)
+          .set(panels[2], { zIndex: 3 }, 2.1)
+          .to(panels[2], {
+            autoAlpha: 1,
+            z: 0,
+            yPercent: 0,
+            rotateX: 0,
+            scale: 1,
+            duration: 0.22,
+            ease: "power3.out",
+          }, 2.1)
+          .to("[data-camera-world]", {
+            rotateY: 2.5,
+            duration: 0.44,
+            ease: "sine.inOut",
+          }, 2.1)
+          .to("[data-camera-progress]", {
+            scaleY: 1,
+            duration: 0.72,
+            ease: "none",
+          }, 2.32)
+          .to(panels[2], {
+            scale: 1.025,
+            duration: 0.3,
+            ease: "power2.out",
+          }, 3.04);
       } else if (cameraStory) {
         gsap.from("[data-camera-panel]", {
           y: 45,
