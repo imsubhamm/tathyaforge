@@ -2,6 +2,10 @@ import { randomUUID } from "crypto";
 import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 import { clientIp, hashIp, recordEvent } from "@/lib/analytics";
+import {
+  CalendarConflictError,
+  createCalendarMeeting,
+} from "@/lib/google-calendar";
 
 export const runtime = "nodejs";
 
@@ -129,6 +133,34 @@ export async function POST(request: NextRequest) {
     }
 
     const end = new Date(start.getTime() + duration * 60 * 1000);
+    let calendarMeeting;
+    try {
+      calendarMeeting = await createCalendarMeeting({
+        start,
+        end,
+        timezone,
+        name,
+        email,
+        need,
+      });
+    } catch (error) {
+      if (error instanceof CalendarConflictError) {
+        return NextResponse.json(
+          { ok: false, error: error.message },
+          { status: 409 },
+        );
+      }
+      console.error("Google Calendar meeting creation failed", error);
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Calendar booking is temporarily unavailable. Please choose another time or email us.",
+        },
+        { status: 503 },
+      );
+    }
+
     const event = await recordEvent({
       type: "meeting_request",
       timezone,
@@ -140,6 +172,8 @@ export async function POST(request: NextRequest) {
         category,
         start: start.toISOString(),
         duration,
+        calendarEventId: calendarMeeting?.eventId || null,
+        meetUrl: calendarMeeting?.meetUrl || null,
       },
     });
 
@@ -162,54 +196,81 @@ export async function POST(request: NextRequest) {
       auth: { user: smtpUser, pass: smtpPassword },
     });
     const uid = `${randomUUID()}@tathyaforge.in`;
-    const invite = calendarInvite({
-      uid,
-      start,
-      end,
-      name,
-      email,
-      need,
-      organizer: smtpUser,
-    });
+    const invite = calendarMeeting
+      ? null
+      : calendarInvite({
+          uid,
+          start,
+          end,
+          name,
+          email,
+          need,
+          organizer: smtpUser,
+        });
+    const meetingLine = calendarMeeting?.meetUrl
+      ? `Google Meet: ${calendarMeeting.meetUrl}`
+      : "A calendar invitation is attached.";
 
-    await transporter.sendMail({
-      from: `"TathyaForge" <${smtpUser}>`,
-      to: email,
-      bcc: ownerRecipients,
-      replyTo: ownerRecipients[0],
-      subject: `Meeting request confirmed — ${name} × TathyaForge`,
-      text: [
-        `Hi ${name},`,
-        "",
-        "Your TathyaForge project discovery request has been received.",
-        `Preferred time: ${start.toISOString()} (${timezone})`,
-        `Project: ${need}`,
-        "",
-        "A calendar invitation is attached. Subham will reply if the time needs adjustment.",
-      ].join("\n"),
-      html: `
+    let emailed = false;
+    try {
+      await transporter.sendMail({
+        from: `"TathyaForge" <${smtpUser}>`,
+        to: email,
+        bcc: ownerRecipients,
+        replyTo: ownerRecipients[0],
+        subject: `Meeting confirmed — ${name} × TathyaForge`,
+        text: [
+          `Hi ${name},`,
+          "",
+          "Your TathyaForge project discovery meeting is confirmed.",
+          `Time: ${start.toISOString()} (${timezone})`,
+          `Project: ${need}`,
+          meetingLine,
+          "",
+          "Subham will reply if any adjustment is needed.",
+        ].join("\n"),
+        html: `
         <div style="font-family:Arial,sans-serif;color:#172033;line-height:1.6">
-          <h2>Project discovery request received</h2>
+          <h2>Project discovery meeting confirmed</h2>
           <p>Hi ${escapeHtml(name)},</p>
-          <p>Your preferred meeting time has been recorded.</p>
+          <p>Your TathyaForge meeting is confirmed.</p>
           <p><strong>Time:</strong> ${start.toISOString()} (${timezone})<br>
           <strong>Project:</strong> ${escapeHtml(need)}</p>
-          <p>A calendar invitation is attached. Subham will reply if the time needs adjustment.</p>
+          ${
+            calendarMeeting?.meetUrl
+              ? `<p><a href="${escapeHtml(calendarMeeting.meetUrl)}" style="display:inline-block;background:#ff9500;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700">Join Google Meet</a></p>`
+              : "<p>A calendar invitation is attached.</p>"
+          }
+          <p>Subham will reply if the time needs adjustment.</p>
           <p>— TathyaForge</p>
         </div>`,
-      icalEvent: {
-        filename: "tathyaforge-discovery.ics",
-        method: "REQUEST",
-        content: invite,
-      },
-    });
+        ...(invite
+          ? {
+              icalEvent: {
+                filename: "tathyaforge-discovery.ics",
+                method: "REQUEST" as const,
+                content: invite,
+              },
+            }
+          : {}),
+      });
+      emailed = true;
+    } catch (error) {
+      console.error("Meeting confirmation email failed", error);
+    }
 
     return NextResponse.json({
       ok: true,
-      emailed: true,
+      emailed,
+      calendarCreated: Boolean(calendarMeeting),
+      meetUrl: calendarMeeting?.meetUrl,
       requestId: event.id,
       message:
-        "Your meeting request and calendar invitation have been emailed to everyone.",
+        calendarMeeting
+          ? "Your meeting is confirmed. The Google Meet invitation has been sent to everyone."
+          : emailed
+            ? "Your meeting request and calendar invitation have been emailed to everyone."
+            : "Your preferred time has been recorded. Subham will confirm it by email shortly.",
     });
   } catch {
     return NextResponse.json(
