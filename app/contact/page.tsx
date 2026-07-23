@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ButtonLink } from "@/components/ButtonLink";
 import { ContactForm } from "@/components/ContactForm";
 import { Container } from "@/components/Container";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -35,12 +36,7 @@ export default function ContactPage() {
                 {company.email}
               </a>
               <div className="mt-6">
-                <a
-                  href={projectInquiryHref}
-                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-amber-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-amber-600"
-                >
-                  Email TathyaForge
-                </a>
+                <ButtonLink href={projectInquiryHref}>Plan With Tathya AI</ButtonLink>
               </div>
             </div>
           </div>
