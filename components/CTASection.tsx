@@ -11,7 +11,7 @@ export function CTASection({ title, buttonLabel, href }: CTASectionProps) {
     <section className="py-16 sm:py-20">
       <div className="surface rounded-lg p-8 sm:p-10 lg:p-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
             {title}
           </h2>
           <ButtonLink href={href}>{buttonLabel}</ButtonLink>

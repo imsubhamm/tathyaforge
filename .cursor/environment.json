@@ -1,0 +1,9 @@
+{
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "TathyaForge Next.js",
+      "command": "npm run dev"
+    }
+  ]
+}

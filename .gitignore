@@ -19,6 +19,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+data/*.ndjson
+research-agent/data/
+research-agent/runs/
 
 # OS and editor files
 .DS_Store

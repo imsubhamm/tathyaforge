@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent } from "react";
-import { projectInquiryHref } from "@/lib/content";
+import { company } from "@/lib/content";
 
 export function ContactForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -18,27 +18,27 @@ export function ContactForm() {
       ].join("\n"),
     );
 
-    window.location.href = `${projectInquiryHref}&body=${body}`;
+    window.location.href = `mailto:${company.email}?subject=Project%20Inquiry%20for%20TathyaForge&body=${body}`;
   }
 
   const inputClass =
-    "min-h-12 rounded-md border border-slate-700/80 bg-slate-950/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-amber-300";
+    "min-h-12 rounded-md border border-slate-300 bg-white/90 px-4 py-3 text-sm text-slate-950 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/10";
 
   return (
     <form onSubmit={handleSubmit} className="surface grid gap-4 rounded-lg p-5 sm:p-6">
-      <label className="grid gap-2 text-sm font-medium text-slate-200">
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
         Name
         <input className={inputClass} name="name" type="text" autoComplete="name" required />
       </label>
-      <label className="grid gap-2 text-sm font-medium text-slate-200">
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
         Email
         <input className={inputClass} name="email" type="email" autoComplete="email" required />
       </label>
-      <label className="grid gap-2 text-sm font-medium text-slate-200">
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
         Company
         <input className={inputClass} name="company" type="text" autoComplete="organization" />
       </label>
-      <label className="grid gap-2 text-sm font-medium text-slate-200">
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
         Project Type
         <select className={inputClass} name="projectType" defaultValue="Data Engineering">
           <option>Data Engineering</option>
@@ -51,7 +51,7 @@ export function ContactForm() {
           <option>Custom ERP / SaaS</option>
         </select>
       </label>
-      <label className="grid gap-2 text-sm font-medium text-slate-200">
+      <label className="grid gap-2 text-sm font-medium text-slate-700">
         Message
         <textarea
           className={`${inputClass} min-h-36 resize-y`}
@@ -62,7 +62,7 @@ export function ContactForm() {
       </label>
       <button
         type="submit"
-        className="mt-2 min-h-12 rounded-md bg-amber-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-amber-200"
+        className="mt-2 min-h-12 rounded-md bg-amber-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-amber-600"
       >
         Open Email Draft
       </button>

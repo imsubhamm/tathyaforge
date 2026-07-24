@@ -1,0 +1,44 @@
+{
+  "workflowName": "TathyaForge Daily Opportunity Research",
+  "timezone": "Asia/Kolkata",
+  "runTime": "07:00",
+  "centerPostalCode": "713359",
+  "radiusKm": 400,
+  "country": "India",
+  "dailyQualifiedLeadTarget": 20,
+  "dailyDemoTarget": 5,
+  "minimumOpportunityInr": 50000,
+  "websiteExceptionMinimumInr": 10000,
+  "senderEmail": "hellow@tathyaforge.in",
+  "notificationEmail": "imsubhamrk@outlook.com",
+  "automaticProspectOutreach": false,
+  "services": [
+    "websites",
+    "AI automation",
+    "SEO",
+    "web and mobile applications",
+    "ERP",
+    "chatbots",
+    "CRM and workflow automation"
+  ],
+  "priorityIndustries": [
+    "manufacturing",
+    "distribution and wholesale",
+    "healthcare and diagnostics",
+    "hospitality and travel",
+    "education and training",
+    "logistics and transport",
+    "real estate and construction",
+    "professional and consulting services",
+    "multi-location retail"
+  ],
+  "scoreWeights": {
+    "businessMaturity": 20,
+    "problemSeverity": 20,
+    "serviceFit": 20,
+    "decisionMakerAccess": 15,
+    "urgency": 10,
+    "evidenceQuality": 10,
+    "demoValue": 5
+  }
+}

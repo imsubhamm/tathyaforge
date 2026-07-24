@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(git)",
+      "Shell(node)",
+      "Shell(npm)",
+      "Shell(npx)",
+      "Shell(sqlite3)",
+      "Shell(curl)",
+      "Read(app/**)",
+      "Read(components/**)",
+      "Read(lib/**)",
+      "Read(research-agent/**)",
+      "Read(package.json)",
+      "Read(package-lock.json)",
+      "Write(app/**)",
+      "Write(components/**)",
+      "Write(lib/**)",
+      "Write(research-agent/**)",
+      "Write(package.json)",
+      "Write(package-lock.json)"
+    ],
+    "deny": [
+      "Shell(rm)",
+      "Read(.env*)",
+      "Write(.env*)",
+      "Read(**/*.pem)",
+      "Write(**/*.pem)",
+      "Write(research-agent/data/**)"
+    ]
+  }
+}
