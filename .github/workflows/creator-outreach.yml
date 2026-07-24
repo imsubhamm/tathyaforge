@@ -1,0 +1,80 @@
+name: Creator outreach morning pipeline
+
+# Uses the same entrypoint and mail template as local runs:
+#   python3 tools/creator_leads/morning_pipeline.py morning
+on:
+  schedule:
+    # 08:00 IST (02:30 UTC)
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview queue only (do not send)"
+        type: boolean
+        default: false
+      limit:
+        description: "Max emails to send this run"
+        type: number
+        default: 30
+
+permissions:
+  contents: read
+
+jobs:
+  morning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Restore lead database + send log + deck
+        uses: actions/cache/restore@v4
+        with:
+          path: tools/creator_leads/data
+          key: creator-leads-data-${{ github.run_id }}
+          restore-keys: |
+            creator-leads-data-
+
+      - name: Require SMTP secret for live sends
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          HOSTINGER_SMTP_PASSWORD: ${{ secrets.HOSTINGER_SMTP_PASSWORD }}
+        run: |
+          if [ -z "${HOSTINGER_SMTP_PASSWORD}" ]; then
+            echo "Add repository secret HOSTINGER_SMTP_PASSWORD (Hostinger mailbox password)."
+            exit 1
+          fi
+
+      - name: Require deck attachment for live sends
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ ! -f tools/creator_leads/data/TathyaForge_Creator_App_Deck.pdf ]; then
+            echo "Missing tools/creator_leads/data/TathyaForge_Creator_App_Deck.pdf"
+            echo "Seed the Actions data cache once (upload deck into tools/creator_leads/data/), then re-run."
+            exit 1
+          fi
+
+      - name: Run morning pipeline
+        env:
+          HOSTINGER_SMTP_PASSWORD: ${{ secrets.HOSTINGER_SMTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          LIMIT="${{ github.event.inputs.limit || '30' }}"
+          ARGS=(morning --limit "$LIMIT" --daily-cap 30)
+          if [ "${{ github.event.inputs.dry_run || 'false' }}" = "true" ]; then
+            ARGS+=(--dry-run)
+          fi
+          python3 tools/creator_leads/morning_pipeline.py "${ARGS[@]}"
+
+      - name: Persist lead database + send log + deck
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: tools/creator_leads/data
+          key: creator-leads-data-${{ github.run_id }}
