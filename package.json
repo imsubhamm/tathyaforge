@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "research:init": "node research-agent/init-db.mjs",
+    "research:verify": "node research-agent/verify-run.mjs",
     "research:send": "node --env-file=.env research-agent/send-report.mjs"
   },
   "dependencies": {

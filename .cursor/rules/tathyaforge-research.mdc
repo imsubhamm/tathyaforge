@@ -1,0 +1,74 @@
+---
+description: TathyaForge opportunity research, command-center, notification, and deployment rules
+globs:
+alwaysApply: true
+---
+
+# TathyaForge operating rules
+
+## Product
+
+- The private command center is `/opportunities`.
+- Its protected API is `/api/opportunities`.
+- The API reads the newest complete run from `research-agent/runs/YYYY-MM-DD/`.
+- Pipeline stage, owner, next action, date, and notes persist in
+  `research-agent/data/pipeline-state.json`.
+- Generated research data, databases, reports, previews, and demos are private
+  runtime artifacts. Never commit them to Git.
+
+## Daily research
+
+Before research, read:
+
+- `research-agent/README.md`
+- `research-agent/config.json`
+- `research-agent/schema.sql`
+
+Use current public sources and collect only public business/professional contact
+information. Every important claim needs a URL and observation date. Never state
+an estimated budget as a known private budget.
+
+Find up to 20 new, evidence-backed businesses within 400 km of postal code
+713359 and inside India. Deduplicate against the SQLite database. Do not pad the
+run when fewer than 20 qualified opportunities exist.
+
+Score with the weights in `config.json`. Create private concept demos only for
+the strongest five leads. Never contact prospects and never publicly deploy a
+prospect demo.
+
+## Secrets
+
+- Never print, read back, commit, summarize, or expose `.env` values.
+- Never commit passwords, API keys, SMTP credentials, SSH keys, private lead
+  data, SQLite databases, or pipeline notes.
+- Commands may consume environment variables without displaying them.
+- Report email is internal only: from `hellow@tathyaforge.in` to
+  `imsubhamrk@outlook.com`.
+
+## Code changes
+
+- Preserve the existing Next.js/Tailwind architecture.
+- Do not expose the command center in public navigation.
+- Keep API access protected by `RESEARCH_DASHBOARD_KEY`, falling back to
+  `ANALYTICS_ADMIN_KEY`.
+- Run `npm run build` after application changes.
+- Run `npm run research:verify` after research changes.
+
+## EC2 deployment
+
+- Target: `ubuntu@3.110.84.59`.
+- Application directory: `/home/ubuntu/tathyaforge`.
+- Process: PM2 app named `tathyaforge`.
+- Preserve the remote `.env`, runtime data, and unrelated applications.
+- Create a rollback archive before deployment.
+- Build before restarting PM2.
+- Verify the public page, unauthorized API rejection, and authorized private API.
+- Never run destructive Git or filesystem commands on EC2.
+
+## Git
+
+- Stage only files belonging to the requested task.
+- Never stage `.env`, `research-agent/data/`, or `research-agent/runs/`.
+- Run a secret/data check before committing.
+- Generated lead/contact intelligence stays off GitHub even if the repository is
+  private.
