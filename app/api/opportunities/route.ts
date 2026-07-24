@@ -1,6 +1,8 @@
 import { mkdir, readdir, readFile, writeFile } from "fs/promises";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";
+import { hasValidAdminSessionFromRequest } from "@/lib/admin-auth";
+import { integrationStatus, readRunMeta } from "@/lib/opportunity-crm";
 
 export const dynamic = "force-dynamic";
 
@@ -10,15 +12,19 @@ type PipelineState = {
   nextAction?: string;
   nextActionAt?: string;
   notes?: string;
+  notionPageId?: string;
+  notionUrl?: string;
+  linearIssueId?: string;
+  linearIssueUrl?: string;
+  demoSlug?: string;
   updatedAt?: string;
 };
 
 const runsDirectory = path.join(process.cwd(), "research-agent", "runs");
 const statePath = path.join(process.cwd(), "research-agent", "data", "pipeline-state.json");
 
-function authorized(request: NextRequest) {
-  const expected = process.env.RESEARCH_DASHBOARD_KEY || process.env.ANALYTICS_ADMIN_KEY;
-  return Boolean(expected && request.headers.get("x-research-key") === expected);
+async function authorized(request: NextRequest) {
+  return hasValidAdminSessionFromRequest(request);
 }
 
 async function readState(): Promise<Record<string, PipelineState>> {
@@ -49,7 +55,7 @@ async function latestRun() {
 }
 
 export async function GET(request: NextRequest) {
-  if (!authorized(request)) {
+  if (!(await authorized(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -86,6 +92,9 @@ export async function GET(request: NextRequest) {
     }),
   );
 
+  const runMeta = await readRunMeta(directory);
+  const integrations = integrationStatus();
+
   return NextResponse.json(
     {
       run: {
@@ -95,9 +104,10 @@ export async function GET(request: NextRequest) {
         target: 20,
         actual: enriched.length,
         demos: enriched.filter((lead) => lead.demo).length,
-        notification: "sent",
-        placesCoverage: false,
+        notification: runMeta.notification || "unknown",
+        placesCoverage: Boolean(runMeta.placesCoverage ?? integrations.placesCoverage),
       },
+      integrations,
       leads: enriched,
     },
     { headers: { "Cache-Control": "no-store" } },
@@ -105,7 +115,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-  if (!authorized(request)) {
+  if (!(await authorized(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

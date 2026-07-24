@@ -1,7 +1,7 @@
 # Run the TathyaForge daily opportunity researcher
 
 Execute the complete daily workflow. Do not stop after producing a spreadsheet.
-The command center is the primary product; Excel is only an optional export.
+The command center is the primary product; Excel/CSV is only an optional export.
 
 1. Read `research-agent/README.md`, `config.json`, and the Cursor research rule.
 2. Initialize the database with `npm run research:init`.
@@ -21,12 +21,24 @@ The command center is the primary product; Excel is only an optional export.
    - public source URLs, supported claims, and observation date.
 7. Create private concept demos for the strongest five leads.
 8. Write a valid `leads.json` compatible with `/api/opportunities`.
-9. Update SQLite only after validating each record and deduplicating it.
-10. Run `npm run research:verify`.
-11. Run `npm run build` to prove the command center can consume the newest run.
-12. Email the internal summary and available report attachments with
+9. Write `run-meta.json` with real `notification` and `placesCoverage` flags.
+10. Update SQLite only after validating each record and deduplicating it.
+11. Run `npm run research:verify`.
+12. Run `npm run build` to prove the command center can consume the newest run.
+13. Email the internal summary and available report attachments with
     `npm run research:send -- <attachments>`.
 
-Never contact prospects. Never deploy prospect demos. Never print or commit
-secrets or generated research data. Finish with counts, top five leads, coverage
-limitations, validation results, and notification status.
+## After the run (hybrid sales)
+
+In `/opportunities`, for each selected lead:
+
+1. **Push to Notion** — CRM row for follow-up.
+2. **Create demo task** — Linear issue in Opportunity Demos + private slug.
+3. Build/open `/opportunities/demos/[slug]` with the command-center key.
+4. **Draft outreach** — copy email/WhatsApp; you approve and send manually.
+5. Update stage / next action / notes.
+
+Never contact prospects automatically. Never deploy prospect demos publicly.
+Never print or commit secrets or generated research data. Finish with counts,
+top five leads, coverage limitations, validation results, and notification
+status.

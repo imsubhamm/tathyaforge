@@ -1,6 +1,8 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Container } from "@/components/Container";
 
 type DailyRow = {
@@ -47,10 +49,10 @@ const metricLabels: Record<string, string> = {
 type Period = "7" | "30" | "90" | "all" | "custom";
 
 export default function AnalyticsPage() {
-  const [key, setKey] = useState("");
+  const router = useRouter();
   const [data, setData] = useState<DashboardData | null>(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState<Period>("all");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -66,10 +68,14 @@ export default function AnalyticsPage() {
         if (to) params.set("to", to);
       }
       const response = await fetch(`/api/analytics?${params}`, {
-        headers: { "x-analytics-key": key },
+        credentials: "include",
         cache: "no-store",
       });
-      if (!response.ok) throw new Error("The analytics key is not valid.");
+      if (response.status === 401) {
+        router.replace("/login?next=/analytics");
+        return;
+      }
+      if (!response.ok) throw new Error("Unable to load analytics.");
       setData(await response.json());
       setPeriod(nextPeriod);
     } catch (loadError) {
@@ -79,10 +85,16 @@ export default function AnalyticsPage() {
     }
   }
 
-  function load(event: FormEvent) {
-    event.preventDefault();
-    void fetchDashboard(period);
+  async function logout() {
+    await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+    router.replace("/login?next=/analytics");
+    router.refresh();
   }
+
+  useEffect(() => {
+    void fetchDashboard(period);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const maxViews = useMemo(
     () => Math.max(1, ...(data?.daily.slice(-31).map((day) => day.pageViews) || [])),
@@ -92,26 +104,31 @@ export default function AnalyticsPage() {
   return (
     <section className="py-16 sm:py-20">
       <Container>
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">Private reporting</p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-          TathyaForge conversion analytics
-        </h1>
-        <p className="mt-4 max-w-2xl leading-7 text-slate-600">
-          Visits, campaign attribution, outreach engagement, assistant activity, and meeting requests in one first-party view.
-        </p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">Private reporting</p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+              TathyaForge conversion analytics
+            </h1>
+            <p className="mt-4 max-w-2xl leading-7 text-slate-600">
+              Visits, campaign attribution, outreach engagement, assistant activity, and meeting requests in one first-party view.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/opportunities" className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
+              Opportunities
+            </Link>
+            <button
+              type="button"
+              onClick={() => void logout()}
+              className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700"
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
 
-        <form onSubmit={load} className="surface mt-8 flex max-w-xl gap-3 rounded-xl p-4">
-          <input
-            type="password"
-            value={key}
-            onChange={(event) => setKey(event.target.value)}
-            placeholder="Analytics access key"
-            className="min-h-11 min-w-0 flex-1 rounded-md border border-slate-300 bg-white px-4 text-sm outline-none focus:border-amber-500"
-          />
-          <button type="submit" disabled={loading} className="rounded-md bg-slate-950 px-5 text-sm font-semibold text-white">
-            {loading ? "Loading…" : "Open dashboard"}
-          </button>
-        </form>
+        {loading && !data && <p className="mt-8 text-sm text-slate-500">Loading analytics…</p>}
         {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
 
         {data && (

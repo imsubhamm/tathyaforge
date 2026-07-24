@@ -12,10 +12,24 @@ the daily business-opportunity research workflow.
   as a known private budget.
 - Rank leads P1–P3 and reject weak or sub-threshold opportunities.
 - Create a suitable demo for the best five leads.
-- Save a verified Excel report and demos under `runs/YYYY-MM-DD/`.
+- Save a verified Excel/CSV report and demos under `runs/YYYY-MM-DD/`.
 - Send the internal report from `hellow@tathyaforge.in` to
   `imsubhamrk@outlook.com`.
 - Never contact prospects automatically.
+
+## Hybrid sales loop
+
+1. Research lands in `/opportunities`.
+2. Select a lead → **Push to Notion** (CRM) and/or **Create demo task** (Linear).
+3. Build/open the private prototype at `/opportunities/demos/[slug]` (key-gated).
+4. **Draft outreach** (email + WhatsApp). You copy and send — no auto-blast.
+5. Track stage/owner/next action in the command center; Notion is the CRM board.
+
+Linear project: **Opportunity Demos** (team `Tathyaforge`), labels `demo`,
+`outreach`, `follow-up`.
+
+Notion setup: see `NOTION_CRM.md`. Without Notion/Linear API tokens, push
+actions queue into `data/outbound-queue.json`.
 
 ## Runtime secrets
 

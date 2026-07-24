@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { hasValidAdminSessionFromRequest } from "@/lib/admin-auth";
 import { readEvents } from "@/lib/analytics";
 
 export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {
-  const supplied = request.headers.get("x-analytics-key");
-  const expected = process.env.ANALYTICS_ADMIN_KEY;
-  if (!expected || supplied !== expected) {
+  if (!(await hasValidAdminSessionFromRequest(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
