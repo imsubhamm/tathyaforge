@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "research:init": "node research-agent/init-db.mjs",
+    "research:send": "node --env-file=.env research-agent/send-report.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",
