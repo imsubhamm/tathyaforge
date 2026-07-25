@@ -4,6 +4,28 @@ import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 
 const here = dirname(fileURLToPath(import.meta.url));
+const rootEnvPath = resolve(here, "..", ".env");
+
+// Optional local .env for hosted/dev runs. Cloud automations may inject the same
+// variables directly; never require a committed secrets file.
+if (existsSync(rootEnvPath)) {
+  for (const line of readFileSync(rootEnvPath, "utf8").split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const separator = trimmed.indexOf("=");
+    if (separator <= 0) continue;
+    const key = trimmed.slice(0, separator).trim();
+    let value = trimmed.slice(separator + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (process.env[key] === undefined) process.env[key] = value;
+  }
+}
+
 const config = JSON.parse(readFileSync(resolve(here, "config.json"), "utf8"));
 const reportPaths = process.argv.slice(2).map((path) => resolve(path));
 
