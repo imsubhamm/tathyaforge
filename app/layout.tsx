@@ -34,6 +34,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "bNyaILHxpsMKGnsrW_4k_wsVwSGpueNo9lYYVi3w9W8",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "TathyaForge | Data Engineering, AI Automation & Multi-Cloud Consulting",
     description:
@@ -44,6 +51,21 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "TathyaForge",
+  url: "https://tathyaforge.in",
+  logo: "https://tathyaforge.in/icon.svg",
+  email: "hello@tathyaforge.in",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kolkata",
+    addressCountry: "IN",
+  },
+  sameAs: ["https://www.linkedin.com/in/imsubhammondal/"],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,6 +74,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
         <AnalyticsTracker />
         <MotionProvider />
         <Navbar />
