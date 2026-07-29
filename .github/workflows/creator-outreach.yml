@@ -16,6 +16,10 @@ on:
         description: "Max emails to send this run"
         type: number
         default: 30
+      daily_cap:
+        description: "Maximum total emails allowed today"
+        type: number
+        default: 30
 
 permissions:
   contents: read
@@ -83,7 +87,8 @@ jobs:
         run: |
           set -euo pipefail
           LIMIT="${{ github.event.inputs.limit || '30' }}"
-          ARGS=(morning --limit "$LIMIT" --daily-cap 30)
+          DAILY_CAP="${{ github.event.inputs.daily_cap || '30' }}"
+          ARGS=(morning --limit "$LIMIT" --daily-cap "$DAILY_CAP")
           if [ "${{ github.event.inputs.dry_run || 'false' }}" = "true" ]; then
             ARGS+=(--dry-run)
           fi
