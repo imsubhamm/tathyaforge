@@ -33,13 +33,30 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Restore lead database + send log + deck
+      - name: Restore lead database + send log
         uses: actions/cache/restore@v4
         with:
-          path: tools/creator_leads/data
+          path: |
+            tools/creator_leads/data/creator_leads_master.csv
+            tools/creator_leads/data/send_log.csv
           key: creator-leads-data-${{ github.run_id }}
           restore-keys: |
             creator-leads-data-
+
+      - name: Bootstrap outreach state when cache is empty
+        if: ${{ hashFiles('tools/creator_leads/data/creator_leads_master.csv', 'tools/creator_leads/data/send_log.csv') == '' }}
+        env:
+          CREATOR_LEADS_STATE_GZIP_BASE64: ${{ secrets.CREATOR_LEADS_STATE_GZIP_BASE64 }}
+          CREATOR_SEND_LOG_GZIP_BASE64: ${{ secrets.CREATOR_SEND_LOG_GZIP_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CREATOR_LEADS_STATE_GZIP_BASE64}" ] || [ -z "${CREATOR_SEND_LOG_GZIP_BASE64}" ]; then
+            echo "Missing encrypted outreach-state bootstrap secrets."
+            exit 1
+          fi
+          mkdir -p tools/creator_leads/data
+          printf '%s' "${CREATOR_LEADS_STATE_GZIP_BASE64}" | base64 --decode | gzip --decompress > tools/creator_leads/data/creator_leads_master.csv
+          printf '%s' "${CREATOR_SEND_LOG_GZIP_BASE64}" | base64 --decode | gzip --decompress > tools/creator_leads/data/send_log.csv
 
       - name: Require SMTP secret for live sends
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -56,7 +73,7 @@ jobs:
         run: |
           if [ ! -f tools/creator_leads/data/TathyaForge_Creator_App_Deck.pdf ]; then
             echo "Missing tools/creator_leads/data/TathyaForge_Creator_App_Deck.pdf"
-            echo "Seed the Actions data cache once (upload deck into tools/creator_leads/data/), then re-run."
+            echo "The deck must be committed at tools/creator_leads/data/TathyaForge_Creator_App_Deck.pdf."
             exit 1
           fi
 
@@ -72,9 +89,11 @@ jobs:
           fi
           python3 tools/creator_leads/morning_pipeline.py "${ARGS[@]}"
 
-      - name: Persist lead database + send log + deck
+      - name: Persist lead database + send log
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: tools/creator_leads/data
+          path: |
+            tools/creator_leads/data/creator_leads_master.csv
+            tools/creator_leads/data/send_log.csv
           key: creator-leads-data-${{ github.run_id }}

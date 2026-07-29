@@ -53,7 +53,7 @@ python3 /Volumes/Flash/ReelCreator/tathya/tools/creator_leads/morning_pipeline.p
 
 - Master lead database: `/Volumes/Flash/ReelCreator/tathya/tools/creator_leads/data/creator_leads_master.csv`
 - Send log: `/Volumes/Flash/ReelCreator/tathya/tools/creator_leads/data/send_log.csv`
-- Deck attachment: `/Users/imsub/Downloads/TathyaForge_Creator_App_Deck.pdf`
+- Deck attachment: `/Volumes/Flash/ReelCreator/tathya/tools/creator_leads/data/TathyaForge_Creator_App_Deck.pdf`
 
 ## Email Positioning
 
@@ -75,7 +75,7 @@ Workflow: `.github/workflows/creator-outreach.yml`
 - Calls the same command: `python3 tools/creator_leads/morning_pipeline.py morning`
 - Uses the same template from `morning_pipeline.py` (including the inquiry number)
 - Needs repository secret `HOSTINGER_SMTP_PASSWORD`
-- Persists `tools/creator_leads/data/` (lead CSV, send log, deck) via Actions cache
+- Keeps the deck in the repository so every runner has the attachment
+- Persists the lead CSV and send log via Actions cache
 
 Manual run: GitHub → Actions → **Creator outreach morning pipeline** → Run workflow
-

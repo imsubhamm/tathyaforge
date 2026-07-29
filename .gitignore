@@ -22,6 +22,7 @@ pnpm-debug.log*
 data/*.ndjson
 research-agent/data/
 research-agent/runs/
+tools/creator_leads/data/*.csv
 
 # OS and editor files
 .DS_Store
