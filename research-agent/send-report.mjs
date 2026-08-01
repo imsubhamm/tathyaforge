@@ -7,6 +7,25 @@ const here = dirname(fileURLToPath(import.meta.url));
 const config = JSON.parse(readFileSync(resolve(here, "config.json"), "utf8"));
 const reportPaths = process.argv.slice(2).map((path) => resolve(path));
 
+// Optional local .env without requiring --env-file (Cloud Agents often inject SMTP_* directly).
+const envPath = resolve(here, "../.env");
+if (existsSync(envPath)) {
+  for (const line of readFileSync(envPath, "utf8").split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) continue;
+    const eq = trimmed.indexOf("=");
+    const key = trimmed.slice(0, eq).trim();
+    let value = trimmed.slice(eq + 1).trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (key && process.env[key] === undefined) process.env[key] = value;
+  }
+}
+
 if (!process.env.SMTP_PASSWORD) {
   throw new Error("SMTP_PASSWORD is missing. Add it to the scheduled job environment.");
 }
