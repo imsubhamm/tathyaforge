@@ -1,5 +1,6 @@
 export const company = {
   name: "TathyaForge",
+  alternateNames: ["tathyaforge", "Tathya Forge"],
   website: "tathyaforge.in",
   email: "hello@tathyaforge.in",
   location: "Kolkata, India",

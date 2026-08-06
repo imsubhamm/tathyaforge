@@ -13,8 +13,12 @@ export const metadata: Metadata = {
     template: "%s | TathyaForge",
   },
   description:
-    "TathyaForge builds reliable data platforms, AI automation workflows, data science solutions, dashboards, and custom ERP/SaaS systems for modern businesses.",
+    "TathyaForge (tathyaforge.in) builds reliable data platforms, AI automation workflows, data science solutions, dashboards, and custom ERP/SaaS systems for modern businesses.",
   keywords: [
+    "TathyaForge",
+    "tathyaforge",
+    "Tathya Forge",
+    "tathyaforge.in",
     "Data Engineering",
     "AI Automation",
     "OpenAI",
@@ -44,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TathyaForge | Data Engineering, AI Automation & Multi-Cloud Consulting",
     description:
-      "Reliable data platforms, AI automation workflows, data science solutions, dashboards, and custom ERP/SaaS systems for modern businesses.",
+      "TathyaForge (tathyaforge.in) builds reliable data platforms, AI automation workflows, data science solutions, dashboards, and custom ERP/SaaS systems for modern businesses.",
     url: "https://tathyaforge.in",
     siteName: "TathyaForge",
     type: "website",
@@ -55,6 +59,8 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "TathyaForge",
+  alternateName: ["tathyaforge", "Tathya Forge", "tathyaforge.in"],
+  legalName: "TathyaForge",
   url: "https://tathyaforge.in",
   logo: "https://tathyaforge.in/icon.svg",
   email: "hello@tathyaforge.in",
@@ -63,7 +69,22 @@ const organizationJsonLd = {
     addressLocality: "Kolkata",
     addressCountry: "IN",
   },
-  sameAs: ["https://www.linkedin.com/in/imsubhammondal/"],
+  sameAs: [
+    "https://www.linkedin.com/in/imsubhammondal/",
+    "https://github.com/imsubhamm/tathyaforge",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "TathyaForge",
+  alternateName: ["tathyaforge", "Tathya Forge"],
+  url: "https://tathyaforge.in",
+  publisher: {
+    "@type": "Organization",
+    name: "TathyaForge",
+  },
 };
 
 export default function RootLayout({
@@ -78,6 +99,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
           }}
         />
         <AnalyticsTracker />
