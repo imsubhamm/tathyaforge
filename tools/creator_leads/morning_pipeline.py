@@ -277,7 +277,7 @@ I have attached a short deck with the concept.
 If this feels useful for your community, would you be open to a 20-minute demo call this week? Happy to show how it can be customised for your niche.
 
 Best regards,
-TathyaForge
+TathyaForge (tathyaforge.in)
 For inquiries: {INQUIRY_PHONE}
 {website_url}
 
@@ -364,7 +364,7 @@ The key idea is simple: your app can be available on both the App Store and Play
 Would a quick 20-minute demo this week be useful?
 
 Best regards,
-TathyaForge
+TathyaForge (tathyaforge.in)
 For inquiries: {INQUIRY_PHONE}
 {website_url}
 
