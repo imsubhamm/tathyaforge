@@ -4,6 +4,32 @@ import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 
 const here = dirname(fileURLToPath(import.meta.url));
+
+// Optional local .env loader so `npm run research:send` works when
+// `node --env-file=.env` would hard-fail on a missing file. Never prints values.
+function loadOptionalEnvFile(filePath) {
+  if (!existsSync(filePath)) return;
+  const text = readFileSync(filePath, "utf8");
+  for (const rawLine of text.split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#")) continue;
+    const match = line.match(/^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/);
+    if (!match) continue;
+    const [, key, rawValue] = match;
+    if (process.env[key] !== undefined) continue;
+    let value = rawValue.trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    process.env[key] = value;
+  }
+}
+
+loadOptionalEnvFile(resolve(here, "../.env"));
+
 const config = JSON.parse(readFileSync(resolve(here, "config.json"), "utf8"));
 const reportPaths = process.argv.slice(2).map((path) => resolve(path));
 
