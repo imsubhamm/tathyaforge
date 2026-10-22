@@ -3,7 +3,27 @@ import { basename, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 
+function loadOptionalEnv(filePath) {
+  if (!existsSync(filePath)) return;
+  for (const rawLine of readFileSync(filePath, "utf8").split(/\r?\n/)) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith("#")) continue;
+    const match = line.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/);
+    if (!match) continue;
+    const key = match[1];
+    let value = match[2];
+    if (
+      (value.startsWith("\"") && value.endsWith("\"")) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (process.env[key] === undefined) process.env[key] = value;
+  }
+}
+
 const here = dirname(fileURLToPath(import.meta.url));
+loadOptionalEnv(resolve(here, "../.env"));
 const config = JSON.parse(readFileSync(resolve(here, "config.json"), "utf8"));
 const reportPaths = process.argv.slice(2).map((path) => resolve(path));
 
